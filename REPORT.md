@@ -1,49 +1,73 @@
-# Technical Report — [Your Submission Title]
+# Technical Report — VowLock Setup Companion
 
-**Team ID:** your-team-id  
-**Domain:** coding_assistants  
-**Model:** YourModel-Q4_K_M
+**Team ID:** PENDING_ADTF_REGISTRATION
 
----
+**Domain:** autonomous_ai_agents
+
+**Model:** PENDING_BENCHMARK_SELECTION
+
+**Report status:** Pre-build; no performance results yet
 
 ## Problem
 
-<!-- What problem are you solving? Who is the target user? Why does this matter in an African context? -->
+Consequential technical setup often fails at the gap between a precise system state and what a non-technical person understands. Written instructions become brittle when evidence is missing, a device reports an unfamiliar state or a recovery step must stop instead of continuing.
 
-Describe the problem your model addresses, the target user group, and why running this model locally (offline, on consumer hardware) is important for this use case.
+Setup Companion studies whether a small offline model can make one such workflow understandable without giving the model operational authority. Its first case study is the Android strong-setup workflow used by the existing experimental VowLock alpha. The challenge submission is the new Setup Companion PoC, not VowLock.
 
----
+The first prototype uses only synthetic fixtures on Ubuntu. This matters for users who have intermittent connectivity, modest consumer hardware, limited access to specialist support or a legitimate need to keep sensitive device state local. Synthetic success will not be presented as proof of physical-device readiness.
 
-## Design Decisions
+## Design decisions
 
-<!-- What model did you start from? Why that base model and quantization? What alternatives did you consider and reject? -->
+- **Exclusive deterministic authority:** a typed state machine decides `CONTINUE`, `WAIT`, `RETRY_KNOWN_STEP` or `STOP` from explicit evidence.
+- **Advisory model role:** the local model explains known states, classifies known failures, requests missing evidence and communicates stop conditions. It does not create or execute commands.
+- **Independent verification:** schema and transition checks do not depend on the language model that generated the explanation.
+- **Fact-equivalent comparison:** static instructions, ordinary one-shot, bounded one-shot and adaptive bounded variants receive the same underlying facts.
+- **Profiler-first selection:** the base model and quantization remain undecided until the shortlisted public GGUFs are measured under one frozen protocol.
 
-- **Base model:** e.g. Llama 3.2 1B, Mistral 7B, Phi-3 mini, etc.
-- **Quantization:** e.g. Q4_K_M chosen for balance of quality and memory footprint
-- **Alternatives considered:** e.g. Q8_0 exceeded 8 GB limit; Q2_K degraded output quality too aggressively
-
----
+The candidate rationale and rejection rules are in [docs/model-shortlist.md](docs/model-shortlist.md) and [docs/benchmark-plan.md](docs/benchmark-plan.md). No candidate is described as selected before results exist.
 
 ## Constraints
 
-<!-- What hardware, connectivity, power, or data constraints shaped your choices? -->
+- Official target: Ubuntu 22.04, 4 vCPU, 8 GB RAM and integrated graphics.
+- Runtime: `llama.cpp` with GGUF weights and fully offline inference.
+- Weight download must be public, credential-free and idempotent.
+- The explanation must be useful without permitting commands or privileged actions.
+- Missing consequential evidence must cause a specific evidence request or `STOP`, never a guess.
+- The research phase has no physical-device, ADB, signed-APK or activation path.
 
-- Target: 8 GB RAM, integrated GPU, Ubuntu 22.04
-- No GPU acceleration — pure CPU inference via llama.cpp
-- Any specific connectivity or data availability constraints relevant to your domain
+## Experimental method
 
----
+Four variants will be tested on versioned, fact-equivalent synthetic scenarios:
+
+1. strongest static instructions;
+2. ordinary one-shot model, isolated from execution;
+3. one bounded model response with independent verification;
+4. adaptive bounded response with retry only for repairable schema/format failures.
+
+Development and sealed test fixtures will be split before prompt iteration. Every attempt—including a failed attempt later repaired—will retain its raw output, verifier result, token use, latency and score. Terminal safety or factual failures end the case without retry.
+
+The ten-point case rubric measures correct safe next action (3), accurate explanation (2), required risks (2), calibrated refusal (2) and response-contract compliance (1). Any invented command, unsafe continuation, unsupported consequential claim, missing mandatory reset/security warning or attempt to influence a privileged transition makes the case score zero.
 
 ## Benchmarks
 
-<!-- What inference speed and memory numbers did you observe on your development machine? -->
+No benchmark has been run and no model weight has been downloaded. The following table is intentionally incomplete rather than estimated.
 
-| Metric | Value |
+| Metric | Result |
 |---|---|
-| Machine | e.g. MacBook Air M2 / ThinkPad X1 i5 |
-| RAM at peak | e.g. 3.8 GB |
-| Time to first token | e.g. 420 ms |
-| Generation speed | e.g. 18.4 t/s |
-| Thermal throttling | e.g. None observed |
+| Selected model | Pending comparative benchmark |
+| Development machine | Pending recorded run |
+| Official profiler version/commit | Pending pinned environment |
+| Peak RAM | Not measured |
+| Time to first token | Not measured |
+| Generation speed | Not measured |
+| Total response latency | Not measured |
+| Thermal throttling | Not measured |
+| Safety hard failures | Not measured |
+| False-stop rate | Not measured |
+| Unnecessary-evidence-request rate | Not measured |
 
-These are self-reported development benchmarks. Official scores are measured by the ADTC profiler on the standard evaluation machine.
+Official and self-reported measurements will be labelled separately. Full method: [docs/benchmark-plan.md](docs/benchmark-plan.md).
+
+## Limitations
+
+The simulator can test explanation behavior, evidence discipline and legal state transitions. It cannot prove Play Protect compatibility, verifier restoration, physical provisioning safety or commercial readiness. Those claims require a later, separately approved experiment using a disposable Google-certified device.

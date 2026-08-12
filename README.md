@@ -1,190 +1,69 @@
-# ADTC 2026 — Submission Template
+# VowLock Setup Companion
 
-This is the official template repository for the **Africa Deep Tech Challenge 2026** Laptop LLM track.
+An offline, safety-bounded explanation layer for difficult Android provisioning workflows. This repository is the new experimental proof of concept intended for the Africa Deep Tech Challenge 2026. VowLock is an existing experimental alpha used only as the first integration case study and source workflow; VowLock itself is not the submitted product.
 
-Fork this repository, fill in the required files, and submit your repository URL via [adtc-2026.devpost.com](https://adtc-2026.devpost.com).
+## Current status
 
----
+**Phase 1: research scaffold. Not submission-ready and not connected to a device.**
 
-## ✅ Submission Checklist
+The repository was created from the [official ADTC 2026 submission template](https://github.com/Africa-Deep-Tech-Foundation/adtc-2026-submission-template). Model selection, team registration details, final prompts, measured benchmarks and the public download script are deliberately pending. `download_model.sh` fails closed until a candidate wins the pre-registered benchmark.
 
-Before submitting, confirm every item:
+No model weights have been downloaded. No phone, ADB session, APK, security control, VowLock key or commitment activation is used in this phase.
 
-- [ ] Your repository is **public** on GitHub
-- [ ] `metadata.json` is fully filled in — no placeholder values remain
-- [ ] `metadata.json` contains exactly **2 test prompts** in the `test_prompts` array, written for your chosen domain
-- [ ] `download_model.sh` successfully downloads your model to `model/`
-- [ ] The downloaded file is a valid **GGUF format** (`.gguf`) weight file
-- [ ] `model/*.gguf` is listed in `.gitignore` — do **not** commit large weight files
-- [ ] `REPORT.md` is filled in with your technical writeup
-- [ ] Running `bash download_model.sh` completes without errors
-- [ ] Your model runs entirely **offline** — zero external network calls during inference
+## Research question
 
----
+Can a small offline language model improve a novice's understanding and recovery during a consequential technical setup compared with well-written static instructions, while a deterministic state machine retains exclusive authority over every system operation?
 
-## 📁 Required File Structure
+## Safety architecture
 
-```
-your-submission/
-├── metadata.json          ← Required. Team, model, and test prompt metadata.
-├── download_model.sh      ← Required. Downloads your .gguf model weight file.
-├── REPORT.md              ← Required. Technical writeup (problem, design, benchmarks).
-├── model/
-│   └── your-model.gguf   ← Downloaded by the script above. Do NOT commit.
-└── .gitignore             ← Must exclude *.gguf and model/ from version control.
+```text
+Synthetic scenario fixture
+          |
+          v
+Deterministic state machine ----> append-only evidence events
+          |
+          v
+Sanitized state summary
+          |
+          v
+Local GGUF explanation layer
+          |
+          v
+Human-readable guidance only
 ```
 
----
+The model may explain a known state, classify a known failure, request missing non-sensitive evidence or stop. It may not compose or execute shell/ADB commands, select or operate a device, change security controls, install software, assign Device Owner, erase/reboot a device or activate a commitment. Deterministic code owns all state transitions and stop conditions.
 
-## 📝 metadata.json
+## Phase 1 artifacts
 
-Fill in every field. No field should remain at its placeholder value.
+- [Research boundary](docs/research-boundary.md)
+- [Experiment design](docs/experiment-design.md)
+- [Model shortlist](docs/model-shortlist.md)
+- [Benchmark plan](docs/benchmark-plan.md)
+- [Technical report draft](REPORT.md)
 
-```json
-{
-  "team_id": "your-team-id",
-  "domain": "coding_assistants",
-  "language_scope": ["en"],
-  "african_alpha_claim": false,
-  "budget_laptop_claim": true,
-  "submitter": {
-    "name": "your-name",
-    "email": "your-email@domain.com",
-    "github_handle": "your-github"
-  },
-  "cross_disciplinary_pairing": {
-    "discipline": "education",
-    "load_bearing": true,
-    "description": "Brief description of how your model serves a real-world domain."
-  },
-  "test_prompts": [
-    {
-      "prompt_id": "tp_001",
-      "prompt": "Your first test prompt, written for your chosen domain."
-    },
-    {
-      "prompt_id": "tp_002",
-      "prompt": "Your second test prompt, written for your chosen domain."
-    }
-  ],
-  "model": {
-    "name": "YourModel-Q4_K_M",
-    "runtime": "llama.cpp",
-    "quantization": "GGUF Q4_K_M",
-    "parameters_estimate": "1.1B",
-    "packaging": "binary_bundle"
-  },
-  "_runtime": {
-    "model_path": "model/your-model.gguf"
-  }
-}
-```
+## Challenge constraints carried forward
 
-### Field Reference
+- Ubuntu 22.04 target with 4 vCPU, 8 GB RAM and integrated graphics.
+- GGUF weights through `llama.cpp`; inference must be fully offline.
+- Public, credential-free, idempotent weight download before evaluation.
+- Exactly two declared domain prompts, with hidden prompts added by organizers.
+- Model quality is 50% of judging, throughput 30% and efficiency 20%; crashes or out-of-memory runs disqualify a submission.
 
-| Field | Required | Description |
-|---|---|---|
-| `team_id` | ✅ | Your unique team ID as registered on the ADTF portal |
-| `domain` | ✅ | Your challenge track. One of: `math_scientific_reasoning`, `healthcare_medical`, `agriculture`, `creative_writing`, `coding_assistants`, `corporate_enterprise`, `autonomous_ai_agents` |
-| `language_scope` | ✅ | Array of BCP-47 language codes. Must include at least one. |
-| `african_alpha_claim` | ✅ | `true` only if claiming the African Use Case Bonus |
-| `budget_laptop_claim` | ✅ | Must be `true` — all submissions target the 8 GB RAM laptop profile |
-| `submitter.name` | ✅ | Full name of the team member submitting the run |
-| `submitter.email` | ✅ | Valid email address linked to the registered team |
-| `submitter.github_handle` | ✅ | Verifiable GitHub username |
-| `cross_disciplinary_pairing.discipline` | ✅ | The deep-tech discipline your model serves |
-| `cross_disciplinary_pairing.load_bearing` | ✅ | `true` if the pairing is integral to the submission, not cosmetic |
-| `test_prompts` | ✅ | **Exactly 2 prompts** in your chosen domain. Organizers will add 2 hidden prompts to test for overfitting. |
-| `model.runtime` | ✅ | Must be `llama.cpp`. No other runtime is accepted. |
-| `model.quantization` | ✅ | Must be a GGUF quantization format (e.g. `GGUF Q4_K_M`, `GGUF Q5_K_M`) |
-| `model.parameters_estimate` | ✅ | Approximate parameter count (e.g. `135M`, `1.1B`, `7B`) |
-| `model.packaging` | ✅ | How the model is packaged. One of: `docker_image`, `docker_build_from_repo`, `binary_bundle` |
-| `_runtime.model_path` | ✅ | Relative path from repo root to your `.gguf` file (e.g. `model/my-model.gguf`) |
+Official sources: [challenge](https://adtc-2026.devpost.com/), [rules](https://adtc-2026.devpost.com/rules), [template](https://github.com/Africa-Deep-Tech-Foundation/adtc-2026-submission-template), and [profiler](https://github.com/Africa-Deep-Tech-Foundation/adtc-profiler).
 
----
+## Submission readiness checklist
 
-## 📥 download_model.sh
+- [ ] Confirm final eligibility and obtain the ADTF team ID.
+- [ ] Select the model using the frozen benchmark plan.
+- [ ] Replace every `PENDING_*` value in `metadata.json`.
+- [ ] Freeze exactly two final test prompts.
+- [ ] Implement and test the credential-free, idempotent model download.
+- [ ] Run the official profiler on the target Ubuntu profile.
+- [ ] Publish measured results without extrapolation or invented values.
+- [ ] Keep model weights, secrets, customer data and signed APKs out of Git.
+- [ ] Make the repository public before evaluation.
 
-This script **must** download your model weight file to the `model/` directory.
+## License
 
-Rules:
-- Must be idempotent — safe to run multiple times without re-downloading.
-- Must work without any credentials — your weights must be publicly accessible.
-- The downloaded file path must exactly match `_runtime.model_path` in `metadata.json`.
-
-Recommended hosting options for your weights:
-- [Hugging Face](https://huggingface.co) — public model repos (free, best for GGUF files)
-- GitHub Release Assets — attach the `.gguf` file to a GitHub Release
-- Any stable public URL (GCS public bucket, S3 public object, etc.)
-
----
-
-## 📄 REPORT.md
-
-Your technical writeup. Judges and the LLM-based audit system will read this to understand your submission. Cover:
-
-1. **Problem** — What problem are you solving? Who is the target user in an African context?
-2. **Design Decisions** — What model did you start from? Why that quantization level? What alternatives did you evaluate?
-3. **Constraints** — What hardware, connectivity, or data constraints shaped your approach?
-4. **Benchmarks** — What inference speed and memory numbers did you observe on your development machine?
-
-Keep it factual and specific. One to three pages is ideal.
-
----
-
-## 🧪 Local Testing
-
-The ADTC profiler is open source. Install it directly from the official repository:
-
-```bash
-pip install "git+https://github.com/Africa-Deep-Tech-Foundation/adtc-profiler.git"
-```
-
-Then run a local smoke test before submitting:
-
-```bash
-# 1. Download your weights
-bash download_model.sh
-
-# 2. Run the profiler in participant mode
-adtc-profiler run \
-  --submission . \
-  --mode participant \
-  --output submission.json \
-  --skip-accuracy
-
-# 3. Review your report
-cat submission.json
-```
-
-A valid run produces a `submission.json` with `"measured_on": "participant_laptop"`.
-
-The profiler source code, including the thermal monitoring logic and scoring formulas, is publicly readable at:
-[github.com/Africa-Deep-Tech-Foundation/adtc-profiler](https://github.com/Africa-Deep-Tech-Foundation/adtc-profiler)
-
----
-
-## ⚠️ Rules
-
-1. **Public repository required.** Your repository must be public at the time of evaluation.
-2. **No model weights in git.** Add `*.gguf` and `model/` to your `.gitignore`. The evaluator downloads weights fresh via `download_model.sh`.
-3. **100% offline during evaluation.** Your model must run with zero external network dependencies during our testing window. `download_model.sh` runs before the profiler starts, but once profiling begins, no outbound requests are permitted.
-4. **llama.cpp only.** All models must use GGUF weights and run through `llama.cpp`. No other runtime is supported by our evaluation framework.
-5. **8 GB RAM limit.** Your model must run within the standard laptop profile (4 vCPU, 8 GB RAM, integrated GPU only). Out-of-memory errors during evaluation result in automatic disqualification.
-6. **No size restriction.** There is no parameter count or file size cap — but the 8 GB RAM constraint is strict. Plan your quantization level accordingly.
-7. **Two test prompts required.** Your `metadata.json` must include exactly 2 prompts in the `test_prompts` array. Organizers will generate 2 additional hidden prompts within your domain. All 4 are used for scoring.
-
----
-
-## 🆘 Support
-
-Open an issue in this repository or contact the ADTF team at challenge@africadeeptech.org.
-
-View the full eligibility rules at [adtc-2026.devpost.com/rules](https://adtc-2026.devpost.com/rules).
-
----
-
-## 📄 License
-
-This template is licensed under the terms of the [GNU GPL v3 License](LICENSE).
-
+GPL-3.0, inherited from the official template. See [LICENSE](LICENSE).
