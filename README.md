@@ -42,6 +42,26 @@ The model may explain a known state, classify a known failure, request missing n
 - [Benchmark plan](docs/benchmark-plan.md)
 - [Technical report draft](REPORT.md)
 
+## Synthetic evaluator foundation
+
+The repository now includes an executable, standard-library-only deterministic core:
+
+```text
+companion/evaluator.py       decision policy and CLI
+schemas/                     scenario, decision and evidence-event contracts
+fixtures/development/        invented development cases only
+tests/test_evaluator.py      contract and decision-boundary tests
+```
+
+Run the regression suite and compare every development result with its independent fixture label:
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 -m companion.evaluator fixtures/development --check-label
+```
+
+The evaluator ignores `expected_outcome` when deciding. It uses labels only after evaluation to measure agreement. Its output contract contains no command, device identifier or execution field. The future sealed set is intentionally excluded from Git and must not guide development revisions.
+
 ## Challenge constraints carried forward
 
 - Ubuntu 22.04 target with 4 vCPU, 8 GB RAM and integrated graphics.

@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "dev_reboot_mismatch",
+  "split": "development",
+  "title": "Post-reboot verifier state contradicts the captured baseline",
+  "current_state": "REBOOT_VERIFIED",
+  "known_state": true,
+  "consequential": true,
+  "evidence": [
+    { "key": "post_reboot_verifier_match", "status": "mismatch", "source": "synthetic_fixture", "observed": false },
+    { "key": "post_reboot_owner_status", "status": "verified", "source": "synthetic_fixture", "observed": "assigned" }
+  ],
+  "expected_outcome": {
+    "decision": "STOP",
+    "reason_code": "EVIDENCE_CONTRADICTION",
+    "missing_evidence": []
+  }
+}

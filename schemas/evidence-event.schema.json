@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://osaslearns.com/schemas/setup-companion/evidence-event.schema.json",
+  "title": "Setup Companion append-only evidence event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "timestamp",
+    "run_id",
+    "serial_alias",
+    "fingerprint_hash",
+    "state",
+    "observation",
+    "expected",
+    "actual",
+    "artifact_digest",
+    "decision",
+    "reason"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "run_id": { "type": "string", "pattern": "^synthetic-[a-z0-9_-]+$" },
+    "serial_alias": { "type": "string", "pattern": "^SIM-[A-Z0-9_-]+$" },
+    "fingerprint_hash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "state": { "type": "string" },
+    "observation": { "type": "string" },
+    "expected": { "type": ["string", "number", "boolean", "null"] },
+    "actual": { "type": ["string", "number", "boolean", "null"] },
+    "artifact_digest": { "type": ["string", "null"], "pattern": "^(sha256:[a-f0-9]{64})?$" },
+    "decision": { "enum": ["CONTINUE", "WAIT", "RETRY_KNOWN_STEP", "STOP"] },
+    "reason": { "type": "string", "minLength": 1 }
+  }
+}

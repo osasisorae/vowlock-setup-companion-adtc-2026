@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "dev_terminal_known_failure",
+  "split": "development",
+  "title": "Synthetic authorization was revoked",
+  "current_state": "DEVICE_OWNER_ASSIGNED",
+  "known_state": true,
+  "consequential": true,
+  "evidence": [
+    { "key": "authorization", "status": "failed", "source": "synthetic_fixture", "observed": false }
+  ],
+  "known_failure": {
+    "category": "AUTHORIZATION_REVOKED",
+    "evidence_key": "authorization"
+  },
+  "expected_outcome": {
+    "decision": "STOP",
+    "reason_code": "TERMINAL_KNOWN_FAILURE",
+    "missing_evidence": []
+  }
+}

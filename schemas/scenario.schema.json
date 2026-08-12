@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://osaslearns.com/schemas/setup-companion/scenario.schema.json",
+  "title": "Setup Companion synthetic scenario",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "scenario_id",
+    "split",
+    "title",
+    "current_state",
+    "known_state",
+    "consequential",
+    "evidence",
+    "expected_outcome"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "scenario_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]+$" },
+    "split": { "enum": ["development", "sealed"] },
+    "title": { "type": "string", "minLength": 1 },
+    "current_state": { "$ref": "#/$defs/state" },
+    "known_state": { "type": "boolean" },
+    "consequential": { "type": "boolean" },
+    "evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidence" }
+    },
+    "known_failure": { "$ref": "#/$defs/knownFailure" },
+    "expected_outcome": { "$ref": "#/$defs/expectedOutcome" }
+  },
+  "$defs": {
+    "state": {
+      "enum": [
+        "TARGET_IDENTIFIED",
+        "BASELINE_CAPTURED",
+        "DEVICE_ELIGIBLE",
+        "APK_INSTALLED",
+        "DEVICE_OWNER_ASSIGNED",
+        "BASELINE_RESTORED",
+        "SCAN_PASSED",
+        "REBOOT_VERIFIED",
+        "OBSERVATION_COMPLETE"
+      ]
+    },
+    "evidenceKey": {
+      "enum": [
+        "device_identity",
+        "selection_unique",
+        "authorization",
+        "original_verifier_baseline",
+        "eligible_clean_device",
+        "google_certification",
+        "artifact_digest",
+        "apk_install_result",
+        "device_owner_status",
+        "verifier_restoration_match",
+        "play_protect_scan_result",
+        "post_reboot_verifier_match",
+        "post_reboot_owner_status",
+        "observation_export_digest"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "status", "source"],
+      "properties": {
+        "key": { "$ref": "#/$defs/evidenceKey" },
+        "status": { "enum": ["verified", "missing", "mismatch", "failed", "unknown"] },
+        "source": { "const": "synthetic_fixture" },
+        "observed": { "type": ["string", "number", "boolean", "null"] }
+      }
+    },
+    "knownFailure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["category", "evidence_key"],
+      "properties": {
+        "category": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" },
+        "evidence_key": { "$ref": "#/$defs/evidenceKey" }
+      }
+    },
+    "expectedOutcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "reason_code", "missing_evidence"],
+      "properties": {
+        "decision": { "enum": ["CONTINUE", "WAIT", "RETRY_KNOWN_STEP", "STOP"] },
+        "reason_code": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" },
+        "missing_evidence": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidenceKey" },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

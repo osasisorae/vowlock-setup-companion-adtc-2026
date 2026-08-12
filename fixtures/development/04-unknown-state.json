@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "dev_unknown_state",
+  "split": "development",
+  "title": "Observation cannot be classified into the approved vocabulary",
+  "current_state": "TARGET_IDENTIFIED",
+  "known_state": false,
+  "consequential": true,
+  "evidence": [],
+  "expected_outcome": {
+    "decision": "STOP",
+    "reason_code": "UNKNOWN_STATE",
+    "missing_evidence": []
+  }
+}

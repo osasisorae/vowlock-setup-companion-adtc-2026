@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "dev_scan_missing",
+  "split": "development",
+  "title": "Play Protect scan evidence is absent from the synthetic record",
+  "current_state": "SCAN_PASSED",
+  "known_state": true,
+  "consequential": true,
+  "evidence": [
+    { "key": "device_identity", "status": "verified", "source": "synthetic_fixture", "observed": "SIM-E" },
+    { "key": "selection_unique", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "authorization", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "original_verifier_baseline", "status": "verified", "source": "synthetic_fixture", "observed": "captured" },
+    { "key": "eligible_clean_device", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "google_certification", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "artifact_digest", "status": "verified", "source": "synthetic_fixture", "observed": "sha256:synthetic" },
+    { "key": "apk_install_result", "status": "verified", "source": "synthetic_fixture", "observed": "installed" },
+    { "key": "device_owner_status", "status": "verified", "source": "synthetic_fixture", "observed": "assigned" },
+    { "key": "verifier_restoration_match", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "play_protect_scan_result", "status": "missing", "source": "synthetic_fixture", "observed": null }
+  ],
+  "expected_outcome": {
+    "decision": "WAIT",
+    "reason_code": "MISSING_EVIDENCE",
+    "missing_evidence": ["play_protect_scan_result"]
+  }
+}

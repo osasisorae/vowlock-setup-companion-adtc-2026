@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://osaslearns.com/schemas/setup-companion/decision.schema.json",
+  "title": "Setup Companion deterministic decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "evaluator_version",
+    "scenario_id",
+    "decision",
+    "reason_code",
+    "next_state",
+    "missing_evidence",
+    "facts",
+    "source"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "evaluator_version": { "type": "string", "minLength": 1 },
+    "scenario_id": { "type": "string" },
+    "decision": { "enum": ["CONTINUE", "WAIT", "RETRY_KNOWN_STEP", "STOP"] },
+    "reason_code": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" },
+    "next_state": {
+      "type": ["string", "null"],
+      "enum": [
+        "TARGET_IDENTIFIED",
+        "BASELINE_CAPTURED",
+        "DEVICE_ELIGIBLE",
+        "APK_INSTALLED",
+        "DEVICE_OWNER_ASSIGNED",
+        "BASELINE_RESTORED",
+        "SCAN_PASSED",
+        "REBOOT_VERIFIED",
+        "OBSERVATION_COMPLETE",
+        null
+      ]
+    },
+    "missing_evidence": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "facts": { "type": "array", "items": { "type": "string" } },
+    "source": { "const": "deterministic_evaluator" }
+  }
+}

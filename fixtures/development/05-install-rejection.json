@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "dev_install_rejection",
+  "split": "development",
+  "title": "Known synthetic installation rejection",
+  "current_state": "APK_INSTALLED",
+  "known_state": true,
+  "consequential": false,
+  "evidence": [
+    { "key": "device_identity", "status": "verified", "source": "synthetic_fixture", "observed": "SIM-C" },
+    { "key": "selection_unique", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "authorization", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "original_verifier_baseline", "status": "verified", "source": "synthetic_fixture", "observed": "captured" },
+    { "key": "eligible_clean_device", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "google_certification", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "artifact_digest", "status": "verified", "source": "synthetic_fixture", "observed": "sha256:synthetic" },
+    { "key": "apk_install_result", "status": "failed", "source": "synthetic_fixture", "observed": "known_rejection" }
+  ],
+  "known_failure": {
+    "category": "INSTALL_REJECTION",
+    "evidence_key": "apk_install_result"
+  },
+  "expected_outcome": {
+    "decision": "RETRY_KNOWN_STEP",
+    "reason_code": "KNOWN_REPAIRABLE_FAILURE",
+    "missing_evidence": []
+  }
+}

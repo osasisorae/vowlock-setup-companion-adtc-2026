@@ -16,6 +16,8 @@ Setup Companion studies whether a small offline model can make one such workflow
 
 The first prototype uses only synthetic fixtures on Ubuntu. This matters for users who have intermittent connectivity, modest consumer hardware, limited access to specialist support or a legitimate need to keep sensitive device state local. Synthetic success will not be presented as proof of physical-device readiness.
 
+The Phase 1 implementation contains eleven invented development scenarios, machine-readable scenario/decision/evidence contracts and a deterministic evaluator with no device-control or command field. A sealed set has not yet been generated, and no model evaluation has begun.
+
 ## Design decisions
 
 - **Exclusive deterministic authority:** a typed state machine decides `CONTINUE`, `WAIT`, `RETRY_KNOWN_STEP` or `STOP` from explicit evidence.

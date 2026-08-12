@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "dev_target_verified",
+  "split": "development",
+  "title": "Synthetic target identity and authority are verified",
+  "current_state": "TARGET_IDENTIFIED",
+  "known_state": true,
+  "consequential": false,
+  "evidence": [
+    { "key": "device_identity", "status": "verified", "source": "synthetic_fixture", "observed": "SIM-A" },
+    { "key": "selection_unique", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "authorization", "status": "verified", "source": "synthetic_fixture", "observed": true }
+  ],
+  "expected_outcome": {
+    "decision": "CONTINUE",
+    "reason_code": "STATE_VERIFIED",
+    "missing_evidence": []
+  }
+}

@@ -46,3 +46,22 @@ Create labelled development fixtures and an untouched sealed set before prompt i
 The improvement loop is: attempt → independent evaluation → error classification → prompt/knowledge/development-fixture revision → full development regression → one held-out evaluation after freezing the version.
 
 Deterministic verification may establish schema conformance, prohibited structures, required evidence fields and legal state transitions. Free-form factual explanations require source-constrained templates or independent human review; deterministic code must not overclaim that it proved arbitrary prose true.
+
+## Implemented deterministic vocabulary
+
+The first executable state sequence is:
+
+```text
+TARGET_IDENTIFIED
+  → BASELINE_CAPTURED
+  → DEVICE_ELIGIBLE
+  → APK_INSTALLED
+  → DEVICE_OWNER_ASSIGNED
+  → BASELINE_RESTORED
+  → SCAN_PASSED
+  → REBOOT_VERIFIED
+  → OBSERVATION_COMPLETE
+  → STOP (activation remains outside the experiment)
+```
+
+At each state, the evaluator requires cumulative explicit evidence. Missing or unknown required evidence returns `WAIT` with exact evidence keys. Any contradiction returns `STOP`. A fixture may report a known failure category, but it cannot declare that category repairable or choose a retry state. Those permissions live in an evaluator-owned allowlist. A failed observation returns `RETRY_KNOWN_STEP` only when its category, evidence key, consequence class and current state match that internal policy; otherwise it stops. This policy decides state safety only—it does not prove that free-form model prose is factually correct.

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "dev_unclassified_owner_failure",
+  "split": "development",
+  "title": "Unclassified Device Owner observation failure",
+  "current_state": "DEVICE_OWNER_ASSIGNED",
+  "known_state": true,
+  "consequential": true,
+  "evidence": [
+    { "key": "device_owner_status", "status": "failed", "source": "synthetic_fixture", "observed": "unclassified" }
+  ],
+  "expected_outcome": {
+    "decision": "STOP",
+    "reason_code": "UNCLASSIFIED_FAILURE",
+    "missing_evidence": []
+  }
+}

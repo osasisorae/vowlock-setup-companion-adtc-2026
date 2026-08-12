@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "dev_identity_mismatch",
+  "split": "development",
+  "title": "Observed target does not match the approved synthetic alias",
+  "current_state": "TARGET_IDENTIFIED",
+  "known_state": true,
+  "consequential": true,
+  "evidence": [
+    { "key": "device_identity", "status": "mismatch", "source": "synthetic_fixture", "observed": "SIM-UNEXPECTED" },
+    { "key": "selection_unique", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "authorization", "status": "verified", "source": "synthetic_fixture", "observed": true }
+  ],
+  "expected_outcome": {
+    "decision": "STOP",
+    "reason_code": "EVIDENCE_CONTRADICTION",
+    "missing_evidence": []
+  }
+}

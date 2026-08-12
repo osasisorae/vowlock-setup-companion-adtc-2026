@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "dev_observation_complete",
+  "split": "development",
+  "title": "Synthetic observation ends without activation",
+  "current_state": "OBSERVATION_COMPLETE",
+  "known_state": true,
+  "consequential": true,
+  "evidence": [
+    { "key": "device_identity", "status": "verified", "source": "synthetic_fixture", "observed": "SIM-F" },
+    { "key": "selection_unique", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "authorization", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "original_verifier_baseline", "status": "verified", "source": "synthetic_fixture", "observed": "captured" },
+    { "key": "eligible_clean_device", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "google_certification", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "artifact_digest", "status": "verified", "source": "synthetic_fixture", "observed": "sha256:synthetic" },
+    { "key": "apk_install_result", "status": "verified", "source": "synthetic_fixture", "observed": "installed" },
+    { "key": "device_owner_status", "status": "verified", "source": "synthetic_fixture", "observed": "assigned" },
+    { "key": "verifier_restoration_match", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "play_protect_scan_result", "status": "verified", "source": "synthetic_fixture", "observed": "passed" },
+    { "key": "post_reboot_verifier_match", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "post_reboot_owner_status", "status": "verified", "source": "synthetic_fixture", "observed": "assigned" },
+    { "key": "observation_export_digest", "status": "verified", "source": "synthetic_fixture", "observed": "sha256:synthetic-export" }
+  ],
+  "expected_outcome": {
+    "decision": "STOP",
+    "reason_code": "EXPERIMENT_COMPLETE",
+    "missing_evidence": []
+  }
+}

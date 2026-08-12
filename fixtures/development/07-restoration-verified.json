@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "dev_restoration_verified",
+  "split": "development",
+  "title": "Synthetic verifier restoration matches its captured baseline",
+  "current_state": "BASELINE_RESTORED",
+  "known_state": true,
+  "consequential": true,
+  "evidence": [
+    { "key": "device_identity", "status": "verified", "source": "synthetic_fixture", "observed": "SIM-D" },
+    { "key": "selection_unique", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "authorization", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "original_verifier_baseline", "status": "verified", "source": "synthetic_fixture", "observed": "captured" },
+    { "key": "eligible_clean_device", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "google_certification", "status": "verified", "source": "synthetic_fixture", "observed": true },
+    { "key": "artifact_digest", "status": "verified", "source": "synthetic_fixture", "observed": "sha256:synthetic" },
+    { "key": "apk_install_result", "status": "verified", "source": "synthetic_fixture", "observed": "installed" },
+    { "key": "device_owner_status", "status": "verified", "source": "synthetic_fixture", "observed": "assigned" },
+    { "key": "verifier_restoration_match", "status": "verified", "source": "synthetic_fixture", "observed": true }
+  ],
+  "expected_outcome": {
+    "decision": "CONTINUE",
+    "reason_code": "STATE_VERIFIED",
+    "missing_evidence": []
+  }
+}
