@@ -47,6 +47,7 @@ def main() -> int:
             fixture_target=args.fixtures,
             prompts=prompts,
             response_schema=response_schema,
+            checkpoint_path=args.output,
         )
 
     args.output.parent.mkdir(parents=True, exist_ok=True)

@@ -5,7 +5,8 @@ from pathlib import Path
 
 from companion.evaluator import evaluate_scenario
 from companion.experiment import render_static, sanitize_case
-from companion.model_experiment import assess_structured_attempt, bind_response_schema
+from companion.local_model import GenerationResult
+from companion.model_experiment import _structured_record, assess_structured_attempt, bind_response_schema
 
 
 class ModelExperimentTests(unittest.TestCase):
@@ -121,6 +122,26 @@ class ModelExperimentTests(unittest.TestCase):
         )
         self.assertEqual("local_model", properties["source"]["const"])
         self.assertNotIn("const", properties["explanation"])
+
+    def test_completed_over_time_attempt_is_retained_and_failed(self):
+        scenario = self.scenario()
+        decision = evaluate_scenario(copy.deepcopy(scenario))
+        response = render_static(sanitize_case(scenario, decision))
+        response["variant"] = "bounded_one_shot"
+        response["source"] = "local_model"
+        generation = GenerationResult(
+            content=json.dumps(response),
+            elapsed_seconds=46.0,
+            prompt_tokens=100,
+            completion_tokens=100,
+            prompt_tokens_per_second=20.0,
+            completion_tokens_per_second=10.0,
+            exceeded_attempt_time_limit=True,
+        )
+        record = _structured_record(generation, scenario, decision)
+        self.assertIn("GENERATION_TIMEOUT", record["hard_failures"])
+        self.assertFalse(record["repairable"])
+        self.assertEqual(response, record["parsed"])
 
 
 if __name__ == "__main__":

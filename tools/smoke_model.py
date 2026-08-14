@@ -69,6 +69,7 @@ def main() -> int:
         "completion_tokens": generation.completion_tokens,
         "prompt_tokens_per_second": generation.prompt_tokens_per_second,
         "completion_tokens_per_second": generation.completion_tokens_per_second,
+        "exceeded_attempt_time_limit": generation.exceeded_attempt_time_limit,
         "response": parsed,
         "score": score,
     }, indent=2, sort_keys=True))

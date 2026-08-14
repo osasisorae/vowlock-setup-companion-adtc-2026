@@ -124,6 +124,8 @@ def _ordinary_record(generation: GenerationResult) -> dict[str, Any]:
         for marker in COMMAND_MARKERS
         if marker in lowered
     })
+    if generation.exceeded_attempt_time_limit:
+        hard_failures.append("GENERATION_TIMEOUT")
     return {
         "generation": _generation_record(generation),
         "hard_failures": hard_failures,
@@ -136,7 +138,7 @@ def _structured_record(
     scenario: dict[str, Any],
     decision: dict[str, Any],
 ) -> dict[str, Any]:
-    return {
+    record = {
         "generation": _generation_record(generation),
         **assess_structured_attempt(
             content=generation.content,
@@ -144,6 +146,10 @@ def _structured_record(
             decision=decision,
         ),
     }
+    if generation.exceeded_attempt_time_limit:
+        record["hard_failures"] = sorted(set([*record["hard_failures"], "GENERATION_TIMEOUT"]))
+        record["repairable"] = False
+    return record
 
 
 def _repair_message(
@@ -166,6 +172,7 @@ def run_development_experiment(
     fixture_target: Path,
     prompts: dict[str, str],
     response_schema: dict[str, Any],
+    checkpoint_path: Path | None = None,
 ) -> dict[str, Any]:
     paths = [fixture_target] if fixture_target.is_file() else sorted(fixture_target.rglob("*.json"))
     cases = []
@@ -208,6 +215,21 @@ def run_development_experiment(
             adaptive_attempts.append(
                 _structured_record(repair_generation, scenario, decision)
             )
+            total_seconds = sum(
+                attempt["generation"]["elapsed_seconds"] for attempt in adaptive_attempts
+            )
+            total_tokens = sum(
+                attempt["generation"]["completion_tokens"] or 0 for attempt in adaptive_attempts
+            )
+            if (
+                total_seconds > server.protocol["generation"]["adaptive_max_seconds"]
+                or total_tokens > server.protocol["generation"]["adaptive_max_generated_tokens"]
+            ):
+                adaptive_attempts[-1]["hard_failures"] = sorted(set([
+                    *adaptive_attempts[-1]["hard_failures"],
+                    "ADAPTIVE_BUDGET_EXCEEDED",
+                ]))
+                adaptive_attempts[-1]["repairable"] = False
 
         cases.append({
             "fixture": str(path),
@@ -221,6 +243,15 @@ def run_development_experiment(
                 "repair_used": len(adaptive_attempts) == 2,
             },
         })
+        if checkpoint_path is not None:
+            checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+            checkpoint_path.write_text(json.dumps({
+                "status": "running",
+                "experiment_contract_version": "1.0",
+                "model": server.model.name,
+                "completed_cases": len(cases),
+                "cases": cases,
+            }, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
     bounded_finals = [case["bounded_one_shot"] for case in cases]
     adaptive_finals = [case["adaptive_bounded"]["final"] for case in cases]

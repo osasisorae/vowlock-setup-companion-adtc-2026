@@ -28,6 +28,7 @@ class GenerationResult:
     completion_tokens: int | None
     prompt_tokens_per_second: float | None
     completion_tokens_per_second: float | None
+    exceeded_attempt_time_limit: bool
 
 
 def build_user_message(sanitized: dict[str, Any]) -> str:
@@ -163,10 +164,13 @@ class LlamaServer:
             method="POST",
         )
         started = time.perf_counter()
+        attempt_limit = generation["max_seconds_per_attempt"]
         try:
             with urllib.request.urlopen(
                 request,
-                timeout=generation["max_seconds_per_attempt"],
+                # The protocol gate remains attempt_limit. The longer transport
+                # window exists only to retain the completed over-budget output.
+                timeout=generation["adaptive_max_seconds"],
             ) as response:
                 body = json.load(response)
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
@@ -185,6 +189,7 @@ class LlamaServer:
             completion_tokens=usage.get("completion_tokens"),
             prompt_tokens_per_second=timings.get("prompt_per_second"),
             completion_tokens_per_second=timings.get("predicted_per_second"),
+            exceeded_attempt_time_limit=elapsed > attempt_limit,
         )
 
     def stop(self) -> None:
