@@ -11,6 +11,11 @@
       "cmake_build_type": "Release",
       "metal": false,
       "blas": false,
+      "binaries": [
+        "llama-cli",
+        "llama-bench",
+        "llama-server"
+      ],
       "status": "built"
     }
   },

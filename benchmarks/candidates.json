@@ -14,7 +14,7 @@
       "url": "https://huggingface.co/Qwen/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q8_0.gguf",
       "expected_bytes": 639446688,
       "linked_sha256": "9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031",
-      "downloaded_sha256": null
+      "downloaded_sha256": "9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031"
     },
     {
       "id": "qwen2.5-1.5b-q4_k_m",
@@ -26,7 +26,7 @@
       "url": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF/resolve/main/qwen2.5-1.5b-instruct-q4_k_m.gguf",
       "expected_bytes": 1117320736,
       "linked_sha256": "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e",
-      "downloaded_sha256": null
+      "downloaded_sha256": "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e"
     },
     {
       "id": "qwen3-1.7b-q8_0",

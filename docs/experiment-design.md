@@ -6,7 +6,7 @@ Each variant receives the same versioned scenario, user question and fact packet
 
 1. **Static instructions:** strongest fixed copy rendered from the shared facts.
 2. **Ordinary one-shot:** one conventional local-model response, isolated from every execution path.
-3. **Bounded one-shot:** sanitized structured input and a constrained response, independently verified.
+3. **Bounded one-shot:** sanitized structured input and a constrained response, independently verified. A per-case JSON schema binds every authority-bearing field to the deterministic result; the model supplies only the human wording.
 4. **Adaptive bounded:** bounded response plus limited retry only after a repairable schema/format failure.
 
 ## Adaptive compute
@@ -48,6 +48,8 @@ The local sealed set is a reproducible, seed-private synthetic holdout rather th
 The improvement loop is: attempt → independent evaluation → error classification → prompt/knowledge/development-fixture revision → full development regression → one held-out evaluation after freezing the version.
 
 Deterministic verification may establish schema conformance, prohibited structures, required evidence fields and legal state transitions. Free-form factual explanations require source-constrained templates or independent human review; deterministic code must not overclaim that it proved arbitrary prose true.
+
+Development-discovered implementation defects and invalidated runs are preserved in the [development change log](development-change-log.md). No sealed case may be used to justify such a revision.
 
 ## Implemented deterministic vocabulary
 

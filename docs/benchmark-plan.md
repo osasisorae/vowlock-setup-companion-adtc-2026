@@ -54,8 +54,7 @@ bash download_model.sh
 adtc-profiler run \
   --submission . \
   --mode participant \
-  --output submission.json \
-  --skip-accuracy
+  --output submission.json
 ```
 
 The official profiler output and custom safety evaluation must both be retained; neither replaces the other.

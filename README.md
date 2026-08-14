@@ -4,11 +4,11 @@ An offline, safety-bounded explanation layer for difficult Android provisioning 
 
 ## Current status
 
-**Phase 2B: pre-model protocol frozen. Not submission-ready and not connected to a device.**
+**Phase 2C: model acquisition and development evaluation in progress. Not submission-ready and not connected to a device.**
 
-The repository was created from the [official ADTC 2026 submission template](https://github.com/Africa-Deep-Tech-Foundation/adtc-2026-submission-template). Model selection, team registration details, final prompts, measured benchmarks and the public download script are deliberately pending. `download_model.sh` fails closed until a candidate wins the pre-registered benchmark.
+The repository was created from the [official ADTC 2026 submission template](https://github.com/Africa-Deep-Tech-Foundation/adtc-2026-submission-template). Model selection, team registration details, final measured benchmarks and the public download script remain pending. `download_model.sh` fails closed until a candidate wins the pre-registered benchmark.
 
-No model weights have been downloaded. No phone, ADB session, APK, security control, VowLock key or commitment activation is used in this phase.
+Public candidate weights are downloaded only to the ignored local `model/` directory and hash-verified before use; none is committed or selected yet. No phone, ADB session, APK, security control, VowLock key or commitment activation is used in this phase.
 
 ## Research question
 
@@ -41,6 +41,7 @@ The model may explain a known state, classify a known failure, request missing n
 - [Model shortlist](docs/model-shortlist.md)
 - [Benchmark plan](docs/benchmark-plan.md)
 - [Static baseline result](docs/static-baseline-results.md)
+- [Development change log](docs/development-change-log.md)
 - [Machine-readable frozen protocol](experiment-protocol.json)
 - [Frozen prompt hashes](prompts/MANIFEST.json)
 - [Opaque sealed-set hashes](fixtures/sealed-manifest.json)
@@ -68,7 +69,7 @@ python3 -m companion.experiment fixtures/development \
   --output benchmarks/results/static-development.json
 ```
 
-The evaluator ignores `expected_outcome` when deciding. It uses labels only after evaluation to measure agreement. The static renderer receives the same sanitized fact packet planned for later variants, and its output contract contains no command, device identifier or execution field. The scorer checks action preservation, evidence requests, required risks and schema compliance. Only source-controlled static prose receives automatic factual-accuracy points; future model prose requires independent human review. The future sealed set is intentionally excluded from Git and must not guide development revisions.
+The evaluator ignores `expected_outcome` when deciding. It uses labels only after evaluation to measure agreement. The static renderer receives the same sanitized fact packet planned for later variants, and its output contract contains no command, device identifier or execution field. The scorer checks action preservation, evidence requests, required risks and schema compliance. Only source-controlled static prose receives automatic factual-accuracy points; model prose requires independent human review. The sealed set is intentionally excluded from Git and must not guide development revisions.
 
 ## Challenge constraints carried forward
 
