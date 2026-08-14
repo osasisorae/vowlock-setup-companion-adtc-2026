@@ -4,7 +4,7 @@ An offline, safety-bounded explanation layer for difficult Android provisioning 
 
 ## Current status
 
-**Phase 2A: deterministic explanation baseline. Not submission-ready and not connected to a device.**
+**Phase 2B: pre-model protocol frozen. Not submission-ready and not connected to a device.**
 
 The repository was created from the [official ADTC 2026 submission template](https://github.com/Africa-Deep-Tech-Foundation/adtc-2026-submission-template). Model selection, team registration details, final prompts, measured benchmarks and the public download script are deliberately pending. `download_model.sh` fails closed until a candidate wins the pre-registered benchmark.
 
@@ -41,6 +41,9 @@ The model may explain a known state, classify a known failure, request missing n
 - [Model shortlist](docs/model-shortlist.md)
 - [Benchmark plan](docs/benchmark-plan.md)
 - [Static baseline result](docs/static-baseline-results.md)
+- [Machine-readable frozen protocol](experiment-protocol.json)
+- [Frozen prompt hashes](prompts/MANIFEST.json)
+- [Opaque sealed-set hashes](fixtures/sealed-manifest.json)
 - [Technical report draft](REPORT.md)
 
 ## Synthetic evaluator foundation
@@ -82,7 +85,7 @@ Official sources: [challenge](https://adtc-2026.devpost.com/), [rules](https://a
 - [ ] Confirm final eligibility and obtain the ADTF team ID.
 - [ ] Select the model using the frozen benchmark plan.
 - [ ] Replace every `PENDING_*` value in `metadata.json`.
-- [ ] Freeze exactly two final test prompts.
+- [x] Freeze exactly two final test prompts.
 - [ ] Implement and test the credential-free, idempotent model download.
 - [ ] Run the official profiler on the target Ubuntu profile.
 - [ ] Publish measured results without extrapolation or invented values.

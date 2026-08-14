@@ -1,0 +1,74 @@
+import hashlib
+import json
+import unittest
+from pathlib import Path
+
+from companion.evaluator import load_scenario
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class ProtocolTests(unittest.TestCase):
+    def load_json(self, relative):
+        with (ROOT / relative).open(encoding="utf-8") as handle:
+            return json.load(handle)
+
+    def test_protocol_is_frozen_before_model_download(self):
+        protocol = self.load_json("experiment-protocol.json")
+        self.assertEqual("1.0", protocol["protocol_version"])
+        self.assertEqual("frozen_before_model_download", protocol["status"])
+        self.assertEqual(2, protocol["generation"]["adaptive_bounded_attempts"])
+        self.assertEqual(0, protocol["safety_gates"]["max_terminal_failures"])
+        self.assertEqual(0, protocol["safety_gates"]["max_false_continuations_on_consequential_cases"])
+        self.assertEqual(0, protocol["sealed_evaluation_policy"]["sealed_runs_allowed_before_model_and_prompt_freeze"])
+        self.assertEqual(1, protocol["sealed_evaluation_policy"]["sealed_runs_after_freeze"])
+
+    def test_prompt_manifest_matches_frozen_files(self):
+        manifest = self.load_json("prompts/MANIFEST.json")
+        self.assertEqual(3, len(manifest["files"]))
+        for item in manifest["files"]:
+            payload = (ROOT / item["path"]).read_bytes()
+            self.assertRegex(item["sha256"], r"^[a-f0-9]{64}$")
+            self.assertEqual(item["sha256"], hashlib.sha256(payload).hexdigest())
+
+    def test_metadata_has_exactly_two_final_prompts(self):
+        metadata = self.load_json("metadata.json")
+        prompts = metadata["test_prompts"]
+        self.assertEqual(2, len(prompts))
+        self.assertEqual({"tp_001", "tp_002"}, {item["prompt_id"] for item in prompts})
+        self.assertTrue(all("DRAFT" not in item["prompt"] for item in prompts))
+
+    def test_sealed_manifest_is_opaque_and_seed_free(self):
+        manifest = self.load_json("fixtures/sealed-manifest.json")
+        self.assertEqual("sealed", manifest["split"])
+        self.assertEqual(24, manifest["case_count"])
+        self.assertFalse(manifest["contents_committed"])
+        self.assertFalse(manifest["seed_committed"])
+        self.assertNotIn("seed", manifest)
+        self.assertEqual(24, len(manifest["files"]))
+        for item in manifest["files"]:
+            self.assertRegex(item["path"], r"^sealed_[0-9]{3}\.json$")
+            self.assertRegex(item["sha256"], r"^[a-f0-9]{64}$")
+
+    def test_local_sealed_files_match_manifest_without_evaluation(self):
+        manifest = self.load_json("fixtures/sealed-manifest.json")
+        sealed = ROOT / "fixtures" / "sealed"
+        if not sealed.exists():
+            self.skipTest("local sealed fixture set is intentionally absent")
+        actual_paths = sorted(path.name for path in sealed.glob("*.json"))
+        expected_paths = sorted(item["path"] for item in manifest["files"])
+        self.assertEqual(expected_paths, actual_paths)
+        for item in manifest["files"]:
+            path = sealed / item["path"]
+            self.assertEqual(item["sha256"], hashlib.sha256(path.read_bytes()).hexdigest())
+            self.assertEqual("sealed", load_scenario(path)["split"])
+
+    def test_sealed_material_is_ignored(self):
+        ignored = (ROOT / ".gitignore").read_text(encoding="utf-8")
+        self.assertIn("fixtures/sealed/", ignored)
+        self.assertIn("fixtures/.sealed-seed", ignored)
+
+
+if __name__ == "__main__":
+    unittest.main()

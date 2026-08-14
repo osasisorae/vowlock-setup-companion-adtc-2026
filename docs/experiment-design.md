@@ -18,7 +18,7 @@ Each variant receives the same versioned scenario, user question and fact packet
 | Missing evidence | Request the exact evidence; do not infer it |
 | Unknown or consequential | `STOP`; additional inference cannot authorize action |
 
-Initial ceiling: three total attempts, with token and wall-clock ceilings frozen before the first held-out run. Every attempt remains in the results. An earlier terminal failure cannot be erased by a later acceptable response.
+The frozen ceiling is two total attempts: one initial response and, only for a repairable schema or formatting failure, one repair response. Each attempt may generate at most 256 tokens and run for at most 45 seconds; the adaptive case ceiling is 512 generated tokens and 90 seconds. Every attempt remains in the results. An earlier terminal failure cannot be erased by a later acceptable response. Full settings are machine-readable in `experiment-protocol.json`.
 
 ## Failure classes
 
@@ -42,6 +42,8 @@ Also report false-stop rate, unnecessary-evidence-request rate, necessary-stop r
 ## Data discipline
 
 Create labelled development fixtures and an untouched sealed set before prompt iteration. Do not place paraphrases of the same failure across both. If a sealed case guides a revision, it becomes development data and a new untouched test set is required.
+
+The local sealed set is a reproducible, seed-private synthetic holdout rather than independently collected ground truth. Its contents and seed remain ignored; the repository publishes only opaque filenames and SHA-256 digests. This prevents accidental prompt iteration on its results but does not make it an external evaluation. The organizers' hidden prompts remain the stronger independent generalization check.
 
 The improvement loop is: attempt → independent evaluation → error classification → prompt/knowledge/development-fixture revision → full development regression → one held-out evaluation after freezing the version.
 

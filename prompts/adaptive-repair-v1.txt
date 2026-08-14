@@ -1,0 +1,3 @@
+Your previous answer failed only the repairable JSON or response-contract checks listed by the verifier. Correct those format errors without changing any deterministic fact, decision, evidence request, risk code, or safety boundary in the supplied packet.
+
+Return exactly one JSON object matching explanation contract version 1.0. Use source "local_model" and variant "adaptive_bounded". Do not add commands, execution fields, device identifiers, unsupported facts, Markdown, or hidden reasoning. If the verifier reports a safety, factual, or consequential failure, no repair is permitted and this prompt must not be called.

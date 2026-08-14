@@ -20,7 +20,7 @@ A macOS development run may catch integration errors but must be labelled separa
 8. Run the sealed set once and preserve every attempt and failure.
 9. Replace the guarded `download_model.sh` and pending metadata only after selection.
 
-The explanation response schema, static renderer and deterministic portion of the scorer are frozen as contract version `1.0`. Sealed fixtures, prompt text and resource ceilings remain pending, so model downloads remain premature.
+The explanation response schema, static renderer, deterministic portion of the scorer, prompts and resource ceilings are frozen as contract version `1.0`. The seed-private sealed fixture set is generated and hash-registered but must not be evaluated until model and prompt selection are frozen. Model downloads can begin only after the seal and prompt manifests pass their integrity checks.
 
 The first development run is recorded in [the static baseline result](static-baseline-results.md). Its perfect contract score is an implementation check, not a claim of novice usefulness.
 

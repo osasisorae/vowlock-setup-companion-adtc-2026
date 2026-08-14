@@ -16,7 +16,7 @@ Setup Companion studies whether a small offline model can make one such workflow
 
 The first prototype uses only synthetic fixtures on Ubuntu. This matters for users who have intermittent connectivity, modest consumer hardware, limited access to specialist support or a legitimate need to keep sensitive device state local. Synthetic success will not be presented as proof of physical-device readiness.
 
-The Phase 1 implementation contains eleven invented development scenarios, machine-readable scenario/decision/evidence contracts and a deterministic evaluator with no device-control or command field. A sealed set has not yet been generated, and no model evaluation has begun.
+The pre-model implementation contains eleven invented development scenarios, machine-readable scenario/decision/evidence contracts and a deterministic evaluator with no device-control or command field. Its static renderer passes all eleven development cases with zero hard failures. A 24-case seed-private synthetic holdout has been generated and hash-registered without being evaluated. Prompts, compute ceilings, resource gates and the one-run sealed policy are frozen; no model evaluation has begun.
 
 ## Design decisions
 

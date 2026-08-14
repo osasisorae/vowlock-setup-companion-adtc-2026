@@ -17,11 +17,11 @@
   "test_prompts": [
     {
       "prompt_id": "tp_001",
-      "prompt": "DRAFT: A setup record says the device identity is known but the original security-verifier baseline was never captured. Explain the state to a novice, identify the exact missing evidence, and choose whether the workflow should continue or stop. Do not provide commands."
+      "prompt": "A synthetic setup record says the target identity and authorization are verified, but the original security-verifier baseline was never captured. Explain this state to a novice, name the missing evidence, and decide whether the workflow may continue. Do not provide commands or claim that a physical device was tested."
     },
     {
       "prompt_id": "tp_002",
-      "prompt": "DRAFT: A simulated setup record contains the expected device identity, a captured baseline, a successful restoration check, and a matching post-reboot verification. Explain what is established, what is not established by synthetic evidence, and the safe next decision. Do not provide commands."
+      "prompt": "A synthetic setup record contains verified target identity, captured verifier baseline, successful restoration, a passed Play Protect scan, matching post-reboot verifier state, retained Device Owner status, and an exported observation digest. Explain what this establishes, what synthetic evidence cannot establish, and the safe final decision. Do not provide commands."
     }
   ],
   "model": {

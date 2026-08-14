@@ -1,0 +1,18 @@
+{
+  "manifest_version": "1.0",
+  "frozen_at": "2026-08-14",
+  "files": [
+    {
+      "path": "prompts/ordinary-one-shot-v1.txt",
+      "sha256": "f2d4e899572c9b4fd5568447535607fa4da8372a7326ca1344beff4d8a0b8e89"
+    },
+    {
+      "path": "prompts/bounded-one-shot-v1.txt",
+      "sha256": "d4be8eadc582d8ddf5d941d80f064ac4bbb34fee3e10adef6c2517c9326609c9"
+    },
+    {
+      "path": "prompts/adaptive-repair-v1.txt",
+      "sha256": "d47c9610a79614c1b566bba368af744ad8009bc15103a77e51d018e42a07aecf"
+    }
+  ]
+}
