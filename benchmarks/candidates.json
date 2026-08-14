@@ -1,0 +1,56 @@
+{
+  "manifest_version": "1.0",
+  "verified_at": "2026-08-14",
+  "verification": "credential-free HTTP HEAD followed redirects to HTTP 200",
+  "total_expected_bytes": 4646802976,
+  "candidates": [
+    {
+      "id": "qwen3-0.6b-q8_0",
+      "name": "Qwen3 0.6B Q8_0",
+      "license": "Apache-2.0",
+      "repository": "Qwen/Qwen3-0.6B-GGUF",
+      "repository_commit": "23749fefcc72300e3a2ad315e1317431b06b590a",
+      "filename": "Qwen3-0.6B-Q8_0.gguf",
+      "url": "https://huggingface.co/Qwen/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q8_0.gguf",
+      "expected_bytes": 639446688,
+      "linked_sha256": "9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031",
+      "downloaded_sha256": null
+    },
+    {
+      "id": "qwen2.5-1.5b-q4_k_m",
+      "name": "Qwen2.5 1.5B Instruct Q4_K_M",
+      "license": "Apache-2.0",
+      "repository": "Qwen/Qwen2.5-1.5B-Instruct-GGUF",
+      "repository_commit": "91cad51170dc346986eccefdc2dd33a9da36ead9",
+      "filename": "qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF/resolve/main/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "expected_bytes": 1117320736,
+      "linked_sha256": "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e",
+      "downloaded_sha256": null
+    },
+    {
+      "id": "qwen3-1.7b-q8_0",
+      "name": "Qwen3 1.7B Q8_0",
+      "license": "Apache-2.0",
+      "repository": "Qwen/Qwen3-1.7B-GGUF",
+      "repository_commit": "90862c4b9d2787eaed51d12237eafdfe7c5f6077",
+      "filename": "Qwen3-1.7B-Q8_0.gguf",
+      "url": "https://huggingface.co/Qwen/Qwen3-1.7B-GGUF/resolve/main/Qwen3-1.7B-Q8_0.gguf",
+      "expected_bytes": 1834426016,
+      "linked_sha256": "061b54daade076b5d3362dac252678d17da8c68f07560be70818cace6590cb1a",
+      "downloaded_sha256": null
+    },
+    {
+      "id": "smollm2-1.7b-q4_k_m",
+      "name": "SmolLM2 1.7B Instruct Q4_K_M",
+      "license": "Apache-2.0",
+      "repository": "HuggingFaceTB/SmolLM2-1.7B-Instruct-GGUF",
+      "repository_commit": "2d4a76a30b4af41ecd395c35725ac11688d4cfe4",
+      "filename": "smollm2-1.7b-instruct-q4_k_m.gguf",
+      "url": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct-GGUF/resolve/main/smollm2-1.7b-instruct-q4_k_m.gguf",
+      "expected_bytes": 1055609536,
+      "linked_sha256": "decd2598bc2c8ed08c19adc3c8fdd461ee19ed5708679d1c54ef54a5a30d4f33",
+      "downloaded_sha256": null
+    }
+  ]
+}

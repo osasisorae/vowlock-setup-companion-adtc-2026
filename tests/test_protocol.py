@@ -39,6 +39,19 @@ class ProtocolTests(unittest.TestCase):
         self.assertEqual({"tp_001", "tp_002"}, {item["prompt_id"] for item in prompts})
         self.assertTrue(all("DRAFT" not in item["prompt"] for item in prompts))
 
+    def test_candidate_manifest_matches_frozen_resource_gate(self):
+        manifest = self.load_json("benchmarks/candidates.json")
+        protocol = self.load_json("experiment-protocol.json")
+        candidates = manifest["candidates"]
+        self.assertEqual(4, len(candidates))
+        self.assertEqual(manifest["total_expected_bytes"], sum(item["expected_bytes"] for item in candidates))
+        artifact_ceiling = protocol["resource_gates"]["max_model_artifact_bytes"]
+        for item in candidates:
+            self.assertLessEqual(item["expected_bytes"], artifact_ceiling)
+            self.assertRegex(item["repository_commit"], r"^[a-f0-9]{40}$")
+            self.assertRegex(item["linked_sha256"], r"^[a-f0-9]{64}$")
+            self.assertTrue(item["url"].startswith("https://huggingface.co/"))
+
     def test_sealed_manifest_is_opaque_and_seed_free(self):
         manifest = self.load_json("fixtures/sealed-manifest.json")
         self.assertEqual("sealed", manifest["split"])

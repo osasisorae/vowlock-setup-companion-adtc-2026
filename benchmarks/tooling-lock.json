@@ -1,0 +1,30 @@
+{
+  "lock_version": "1.0",
+  "frozen_at": "2026-08-14",
+  "llama_cpp": {
+    "repository": "https://github.com/ggml-org/llama.cpp",
+    "commit": "9b05354ec6fb58b4e665e9a39ebc40285c015638",
+    "reported_build": 10433,
+    "local_smoke_build": {
+      "platform": "Darwin x86_64",
+      "compiler": "AppleClang 17.0.0.17000319",
+      "cmake_build_type": "Release",
+      "metal": false,
+      "blas": false,
+      "status": "built"
+    }
+  },
+  "adtc_profiler": {
+    "repository": "https://github.com/Africa-Deep-Tech-Foundation/adtc-profiler",
+    "commit": "7adbe08f157e9b96a670426339aca2a519706bdc",
+    "version": "0.1.0",
+    "local_environment": "Python 3.12 isolated uv environment",
+    "verification": {
+      "tests": "39 passed",
+      "lint": "passed",
+      "cli_help": "passed"
+    },
+    "status": "installed_and_verified"
+  },
+  "claim_boundary": "The Intel macOS environment is for integration smoke tests only. Challenge-profile benchmark claims require Ubuntu 22.04 on the published Standard Laptop profile."
+}
