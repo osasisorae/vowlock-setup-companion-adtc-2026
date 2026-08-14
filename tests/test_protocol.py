@@ -50,6 +50,7 @@ class ProtocolTests(unittest.TestCase):
             self.assertLessEqual(item["expected_bytes"], artifact_ceiling)
             self.assertRegex(item["repository_commit"], r"^[a-f0-9]{40}$")
             self.assertRegex(item["linked_sha256"], r"^[a-f0-9]{64}$")
+            self.assertEqual(item["linked_sha256"], item["downloaded_sha256"])
             self.assertTrue(item["url"].startswith("https://huggingface.co/"))
 
     def test_sealed_manifest_is_opaque_and_seed_free(self):

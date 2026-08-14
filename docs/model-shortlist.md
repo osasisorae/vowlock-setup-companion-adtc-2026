@@ -1,6 +1,6 @@
 # Model shortlist
 
-**Status:** candidates only; none selected and no weights downloaded.
+**Status:** all four candidates downloaded locally and SHA-256 verified; none selected. Weights remain ignored by Git.
 
 All candidates below have developer/maintainer-hosted GGUF repositories that are publicly readable without an account and are compatible with `llama.cpp`. The benchmark, not reputation or parameter count, decides the winner.
 
@@ -11,7 +11,7 @@ All candidates below have developer/maintainer-hosted GGUF repositories that are
 | [Qwen3 1.7B](https://huggingface.co/Qwen/Qwen3-1.7B-GGUF) | `Qwen3-1.7B-Q8_0.gguf` | 1,834,426,016 bytes | Apache-2.0; public | Larger quality candidate with an official GGUF; benchmark non-thinking mode for latency and output control. |
 | [SmolLM2 1.7B Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct-GGUF) | `smollm2-1.7b-instruct-q4_k_m.gguf` | 1,055,609,536 bytes | Apache-2.0; public | Independent compact-model family and a useful check against selecting only Qwen variants. |
 
-Credential-free HEAD requests on 14 August 2026 returned HTTP 200 for all four artifacts. They total 4,646,802,976 bytes (about 4.33 GiB). Parameter count and artifact size are not interchangeable, and runtime RAM will be higher than the GGUF file because `llama.cpp` also allocates working memory and a context/KV cache. Exact repository revisions, linked object hashes and URLs are frozen in `benchmarks/candidates.json`.
+Credential-free downloads completed on 14 August 2026 for all four artifacts. The exact downloaded sizes and SHA-256 values match their linked repository objects. They total 4,646,802,976 bytes (about 4.33 GiB). Parameter count and artifact size are not interchangeable, and runtime RAM will be higher than the GGUF file because `llama.cpp` also allocates working memory and a context/KV cache. Exact repository revisions, linked object hashes and URLs are frozen in `benchmarks/candidates.json`.
 
 ## Deliberate exclusion
 
