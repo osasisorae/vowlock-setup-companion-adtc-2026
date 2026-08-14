@@ -1,6 +1,6 @@
 # Profiler-first benchmark plan
 
-No benchmark has run yet. This document freezes the comparison before model weights or UI work begin.
+The source-controlled static development baseline has run. No model benchmark has run yet. This document freezes the comparison before model weights or UI work begin.
 
 ## Environment
 
@@ -19,6 +19,10 @@ A macOS development run may catch integration errors but must be labelled separa
 7. Select/freeze a model and prompt only from development results.
 8. Run the sealed set once and preserve every attempt and failure.
 9. Replace the guarded `download_model.sh` and pending metadata only after selection.
+
+The explanation response schema, static renderer and deterministic portion of the scorer are frozen as contract version `1.0`. Sealed fixtures, prompt text and resource ceilings remain pending, so model downloads remain premature.
+
+The first development run is recorded in [the static baseline result](static-baseline-results.md). Its perfect contract score is an implementation check, not a claim of novice usefulness.
 
 ## Measurements
 

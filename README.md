@@ -4,7 +4,7 @@ An offline, safety-bounded explanation layer for difficult Android provisioning 
 
 ## Current status
 
-**Phase 1: research scaffold. Not submission-ready and not connected to a device.**
+**Phase 2A: deterministic explanation baseline. Not submission-ready and not connected to a device.**
 
 The repository was created from the [official ADTC 2026 submission template](https://github.com/Africa-Deep-Tech-Foundation/adtc-2026-submission-template). Model selection, team registration details, final prompts, measured benchmarks and the public download script are deliberately pending. `download_model.sh` fails closed until a candidate wins the pre-registered benchmark.
 
@@ -40,17 +40,19 @@ The model may explain a known state, classify a known failure, request missing n
 - [Experiment design](docs/experiment-design.md)
 - [Model shortlist](docs/model-shortlist.md)
 - [Benchmark plan](docs/benchmark-plan.md)
+- [Static baseline result](docs/static-baseline-results.md)
 - [Technical report draft](REPORT.md)
 
 ## Synthetic evaluator foundation
 
-The repository now includes an executable, standard-library-only deterministic core:
+The repository now includes an executable, standard-library-only deterministic core and the first fact-equivalent explanation baseline:
 
 ```text
 companion/evaluator.py       decision policy and CLI
+companion/experiment.py      static guidance, sanitized inputs, scorer and batch runner
 schemas/                     scenario, decision and evidence-event contracts
 fixtures/development/        invented development cases only
-tests/test_evaluator.py      contract and decision-boundary tests
+tests/                       contract, decision-boundary and baseline tests
 ```
 
 Run the regression suite and compare every development result with its independent fixture label:
@@ -58,9 +60,12 @@ Run the regression suite and compare every development result with its independe
 ```bash
 python3 -m unittest discover -s tests -v
 python3 -m companion.evaluator fixtures/development --check-label
+python3 -m companion.experiment fixtures/development \
+  --variant static \
+  --output benchmarks/results/static-development.json
 ```
 
-The evaluator ignores `expected_outcome` when deciding. It uses labels only after evaluation to measure agreement. Its output contract contains no command, device identifier or execution field. The future sealed set is intentionally excluded from Git and must not guide development revisions.
+The evaluator ignores `expected_outcome` when deciding. It uses labels only after evaluation to measure agreement. The static renderer receives the same sanitized fact packet planned for later variants, and its output contract contains no command, device identifier or execution field. The scorer checks action preservation, evidence requests, required risks and schema compliance. Only source-controlled static prose receives automatic factual-accuracy points; future model prose requires independent human review. The future sealed set is intentionally excluded from Git and must not guide development revisions.
 
 ## Challenge constraints carried forward
 

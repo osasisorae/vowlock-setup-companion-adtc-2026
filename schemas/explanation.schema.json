@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://osaslearns.com/schemas/setup-companion/explanation.schema.json",
+  "title": "Setup Companion explanation response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "variant",
+    "scenario_id",
+    "decision",
+    "reason_code",
+    "next_state",
+    "next_step_code",
+    "can_advance",
+    "requested_evidence",
+    "headline",
+    "explanation",
+    "next_step",
+    "risk_codes",
+    "fact_codes",
+    "source"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "variant": { "enum": ["static", "ordinary_one_shot", "bounded_one_shot", "adaptive_bounded"] },
+    "scenario_id": { "type": "string", "minLength": 1 },
+    "decision": { "enum": ["CONTINUE", "WAIT", "RETRY_KNOWN_STEP", "STOP"] },
+    "reason_code": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" },
+    "next_state": {
+      "type": ["string", "null"],
+      "enum": [
+        "TARGET_IDENTIFIED",
+        "BASELINE_CAPTURED",
+        "DEVICE_ELIGIBLE",
+        "APK_INSTALLED",
+        "DEVICE_OWNER_ASSIGNED",
+        "BASELINE_RESTORED",
+        "SCAN_PASSED",
+        "REBOOT_VERIFIED",
+        "OBSERVATION_COMPLETE",
+        null
+      ]
+    },
+    "next_step_code": { "enum": ["ADVANCE", "REQUEST_EVIDENCE", "RETRY_SAME_STEP", "STOP"] },
+    "can_advance": { "type": "boolean" },
+    "requested_evidence": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]+$" },
+      "uniqueItems": true
+    },
+    "headline": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "explanation": { "type": "string", "minLength": 1, "maxLength": 800 },
+    "next_step": { "type": "string", "minLength": 1, "maxLength": 400 },
+    "risk_codes": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" },
+      "uniqueItems": true
+    },
+    "fact_codes": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" },
+      "uniqueItems": true
+    },
+    "source": { "enum": ["static_renderer", "local_model"] }
+  }
+}
