@@ -4,7 +4,7 @@ The source-controlled static development baseline has run. No model benchmark ha
 
 ## Environment
 
-Primary decision environment: the official ADTC Ubuntu 22.04 profile with 4 vCPU, 8 GB RAM and integrated graphics. Record OS/kernel, CPU, RAM, `llama.cpp` commit, profiler commit, model URL, SHA-256, quantization, context size, thread count, temperature, seed and generation limits for every run.
+Primary decision environment: the published ADTC Standard Laptop profile—Ubuntu 22.04 on an Intel Core i5 10th–12th gen or AMD Ryzen 5 3000–5000, 8 GB DDR4 RAM and integrated graphics only. Record OS/kernel, CPU, RAM, `llama.cpp` commit, profiler commit, model URL, SHA-256, quantization, context size, thread count, temperature, seed and generation limits for every run.
 
 A macOS development run may catch integration errors but must be labelled separately and cannot substitute for the challenge-profile result.
 

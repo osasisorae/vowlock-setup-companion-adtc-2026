@@ -69,7 +69,7 @@ The evaluator ignores `expected_outcome` when deciding. It uses labels only afte
 
 ## Challenge constraints carried forward
 
-- Ubuntu 22.04 target with 4 vCPU, 8 GB RAM and integrated graphics.
+- Ubuntu 22.04 target on the published Standard Laptop: Intel Core i5 10th–12th gen or AMD Ryzen 5 3000–5000, 8 GB DDR4 RAM and integrated graphics only.
 - GGUF weights through `llama.cpp`; inference must be fully offline.
 - Public, credential-free, idempotent weight download before evaluation.
 - Exactly two declared domain prompts, with hidden prompts added by organizers.

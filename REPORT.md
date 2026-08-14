@@ -30,7 +30,7 @@ The candidate rationale and rejection rules are in [docs/model-shortlist.md](doc
 
 ## Constraints
 
-- Official target: Ubuntu 22.04, 4 vCPU, 8 GB RAM and integrated graphics.
+- Official target: Ubuntu 22.04 on an Intel Core i5 10th–12th gen or AMD Ryzen 5 3000–5000 laptop, with 8 GB DDR4 RAM and integrated graphics only.
 - Runtime: `llama.cpp` with GGUF weights and fully offline inference.
 - Weight download must be public, credential-free and idempotent.
 - The explanation must be useful without permitting commands or privileged actions.
