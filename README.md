@@ -42,6 +42,7 @@ The model may explain a known state, classify a known failure, request missing n
 - [Benchmark plan](docs/benchmark-plan.md)
 - [Static baseline result](docs/static-baseline-results.md)
 - [Development change log](docs/development-change-log.md)
+- [Development candidate results](docs/development-candidate-results.md)
 - [Machine-readable frozen protocol](experiment-protocol.json)
 - [Frozen prompt hashes](prompts/MANIFEST.json)
 - [Opaque sealed-set hashes](fixtures/sealed-manifest.json)
