@@ -3,6 +3,7 @@ model/*.gguf
 model/*.bin
 model/*.safetensors
 model/*.partial
+model/qwen3-0.6b-hf/
 
 # macOS
 .DS_Store

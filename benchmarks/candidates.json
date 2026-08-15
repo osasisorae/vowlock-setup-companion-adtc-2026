@@ -1,6 +1,7 @@
 {
   "manifest_version": "1.0",
   "verified_at": "2026-08-14",
+  "downloads_completed_at": "2026-08-15",
   "verification": "credential-free HTTP HEAD followed redirects to HTTP 200",
   "total_expected_bytes": 4646802976,
   "candidates": [
