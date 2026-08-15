@@ -18,3 +18,9 @@ The next run used the full explanation JSON schema, but that schema allowed the 
 The bounded runner now creates a per-case schema that binds every authority-bearing field to a deterministic constant. The model generates only `headline`, `explanation` and `next_step` wording. The ordinary one-shot remains unconstrained and isolated for comparison. The superseded output is retained locally as `qwen3-0.6b-q8_0-development-general-schema-invalidated.json`.
 
 This is not a prompt trick that teaches the answer to a decision-making model. It removes decision-making from the model entirely, which is the stated safety design. Human review is still required for the three generated prose fields; schema conformance cannot prove that prose true or understandable.
+
+## 15 August 2026 — Q8 requantization rejected in preflight
+
+The official Qwen3 0.6B GGUF repository contains only Q8_0. The pinned `llama-quantize` refused a direct Q8_0-to-Q4_K_M conversion because requantizing already quantized tensors is disabled by default and its override carries a severe quality warning. The 5.7 MB incomplete output was removed and never benchmarked.
+
+Quantization-round protocol 1.1 forbids `--allow-requantize`. Any Q4_K_M candidate must be converted once from Qwen's official BF16 `model.safetensors` at repository commit `c1899de289a04d12100db370d81485cdf75e47ca`, whose published size and linked SHA-256 were recorded before download.
