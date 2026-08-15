@@ -1,7 +1,7 @@
 {
-  "round_version": "1.1",
+  "round_version": "1.2",
   "frozen_at": "2026-08-15",
-  "status": "bf16_source_verified_before_conversion",
+  "status": "corrected_q4_local_comparison_complete_pending_human_and_ubuntu_review",
   "purpose": "Test whether a derived Q4_K_M artifact improves the challenge-weighted throughput and memory trade-off without losing required safety or too much accuracy relative to the first-round Q8_0 survivor.",
   "baseline": {
     "candidate_id": "qwen3-0.6b-q8_0",
@@ -28,12 +28,52 @@
     "binary": "llama-quantize",
     "quantization": "Q4_K_M",
     "conversion": "convert_hf_to_gguf.py from the same pinned llama.cpp commit",
-    "allow_requantize": false
+    "allow_requantize": false,
+    "conversion_environment": {
+      "platform": "Darwin x86_64",
+      "python": "3.11.14",
+      "torch": "2.2.2",
+      "transformers": "4.57.6",
+      "gguf": "0.19.0",
+      "deviation": "The pinned converter requirement requests torch 2.11.0, which has no Intel macOS wheel. PyTorch 2.2.2 was used only to read the verified safetensors and write BF16 GGUF; benchmark inference and quantization remain on the pinned llama.cpp commit."
+    }
+  },
+  "intermediate": {
+    "filename": "Qwen3-0.6B-BF16-derived.gguf",
+    "bytes": 1509347200,
+    "sha256": "3ab7c733d2d235471ff4ed6f2b738b81cfd263f3ab20160857df4f39d3cb54fa"
   },
   "derived": {
     "filename": "Qwen3-0.6B-Q4_K_M-derived.gguf",
-    "bytes": null,
-    "sha256": null
+    "bytes": 484219776,
+    "sha256": "59b2801f7c5d62daaaf0bbaba929a037c53e1a806ee6d6cb9e2ff7c7d7044e66",
+    "valid_for_selection": false,
+    "invalidation_reason": "The converter wrote two byte-identical tensors even though config.json declares tied word embeddings. The profiler therefore counted 751632384 parameters rather than the official Q8 artifact's 596049920 and the file used more peak RSS despite being smaller on disk."
+  },
+  "tied_tensor_repair": {
+    "registered_at": "2026-08-15",
+    "tool": "tools/convert_tied_qwen.py",
+    "skipped_tensor": "lm_head.weight",
+    "retained_tensor": "model.embed_tokens.weight",
+    "each_tensor_bytes": 311164928,
+    "shared_raw_sha256": "8f29acf519434862d95613b2b4f6b9d14933a5e4d16baebf8ac0b33b410acfb6",
+    "required_preconditions": [
+      "config tie_word_embeddings is true",
+      "dtype and shape match",
+      "raw byte length and SHA-256 match"
+    ],
+    "corrected_bf16": {
+      "filename": "Qwen3-0.6B-BF16-tied.gguf",
+      "bytes": 1198182208,
+      "sha256": "23dc2bb300cb68c5a0ca4da0f0d50a986121ffcd093e1285ab28b8c41039aa0c"
+    },
+    "corrected_q4": {
+      "filename": "Qwen3-0.6B-Q4_K_M-tied.gguf",
+      "bytes": 396704576,
+      "sha256": "297077534a71a538acda7d7a7393081f759774cab48660f6d3e4858bfb58c50e",
+      "profiler_parameter_count": 596049920,
+      "parameter_count_matches_official_q8": true
+    }
   },
   "comparison": {
     "development_protocol": "experiment-protocol.json version 1.0",

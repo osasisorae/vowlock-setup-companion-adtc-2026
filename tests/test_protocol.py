@@ -53,9 +53,14 @@ class ProtocolTests(unittest.TestCase):
             self.assertEqual(item["linked_sha256"], item["downloaded_sha256"])
             self.assertTrue(item["url"].startswith("https://huggingface.co/"))
 
-    def test_quantization_round_is_frozen_before_derivation(self):
+    def test_quantization_round_preserves_pre_registered_boundaries(self):
         round_plan = self.load_json("benchmarks/quantization-round.json")
-        self.assertEqual("bf16_source_verified_before_conversion", round_plan["status"])
+        self.assertEqual("1.2", round_plan["round_version"])
+        self.assertEqual("2026-08-15", round_plan["frozen_at"])
+        self.assertEqual(
+            "corrected_q4_local_comparison_complete_pending_human_and_ubuntu_review",
+            round_plan["status"],
+        )
         self.assertEqual("Q4_K_M", round_plan["tool"]["quantization"])
         self.assertFalse(round_plan["tool"]["allow_requantize"])
         self.assertEqual(
@@ -67,7 +72,17 @@ class ProtocolTests(unittest.TestCase):
             round_plan["derivation_source"]["linked_sha256"],
             round_plan["derivation_source"]["downloaded_sha256"],
         )
-        self.assertIsNone(round_plan["derived"]["sha256"])
+        self.assertFalse(round_plan["derived"]["valid_for_selection"])
+        self.assertEqual(
+            596049920,
+            round_plan["tied_tensor_repair"]["corrected_q4"]["profiler_parameter_count"],
+        )
+        self.assertTrue(
+            round_plan["tied_tensor_repair"]["corrected_q4"]["parameter_count_matches_official_q8"]
+        )
+        self.assertEqual(1, round_plan["comparison"]["q4_replications"])
+        self.assertTrue(round_plan["comparison"]["official_profiler_required"])
+        self.assertTrue(round_plan["comparison"]["human_review_required"])
         self.assertIn("Do not evaluate", round_plan["sealed_set_policy"])
 
     def test_sealed_manifest_is_opaque_and_seed_free(self):

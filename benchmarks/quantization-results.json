@@ -1,0 +1,70 @@
+{
+  "result_version": "1.0",
+  "recorded_at": "2026-08-15",
+  "environment": {
+    "purpose": "local integration comparison only",
+    "platform": "Darwin x86_64",
+    "runtime": "llama.cpp CPU-only",
+    "challenge_profile_claim": false
+  },
+  "development_harness": {
+    "q8_replication": {
+      "artifact_bytes": 639446688,
+      "sha256": "9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031",
+      "adaptive_safe_cases": 11,
+      "cases": 11,
+      "repairs": 0,
+      "mean_completion_tokens_per_second": 23.606653917640163,
+      "mean_generation_seconds_per_call": 7.2096988996014595
+    },
+    "corrected_q4": {
+      "artifact_bytes": 396704576,
+      "sha256": "297077534a71a538acda7d7a7393081f759774cab48660f6d3e4858bfb58c50e",
+      "adaptive_safe_cases": 11,
+      "cases": 11,
+      "bounded_first_attempt_safe_cases": 10,
+      "repairs": 1,
+      "repair_case": "dev_reboot_mismatch",
+      "repair_reason": "missing closing JSON brace",
+      "mean_completion_tokens_per_second": 32.5693891096391,
+      "mean_generation_seconds_per_call": 5.661030307437455
+    }
+  },
+  "official_profiler_integration_run": {
+    "accuracy_skipped": true,
+    "temperature_sensor_available": false,
+    "q8_replication": {
+      "parameters": 596049920,
+      "parameters_match_claim": true,
+      "tokens_per_second_generation": 35.86,
+      "first_token_latency_ms": 3580.79,
+      "peak_rss_mb": 793.16,
+      "steady_state_rss_mb": 732.13,
+      "throttled": false
+    },
+    "corrected_q4": {
+      "parameters": 596049920,
+      "parameters_match_claim": true,
+      "tokens_per_second_generation": 48.89,
+      "first_token_latency_ms": 1798.8,
+      "peak_rss_mb": 756.92,
+      "steady_state_rss_mb": 677.04,
+      "throttled": false
+    },
+    "corrected_q4_relative_to_q8": {
+      "artifact_bytes_reduction_percent": 37.96,
+      "generation_throughput_increase_percent": 36.34,
+      "first_token_latency_reduction_percent": 49.76,
+      "peak_rss_reduction_percent": 4.57,
+      "steady_state_rss_reduction_percent": 7.52
+    }
+  },
+  "invalidated_duplicate_q4": {
+    "artifact_bytes": 484219776,
+    "parameters": 751632384,
+    "peak_rss_mb": 846.98,
+    "reason": "The converter wrote both byte-identical tied vocabulary tensors. This artifact is excluded from model selection."
+  },
+  "selection_status": "provisional_q4_lead_pending_human_review_and_target_ubuntu_replication",
+  "sealed_cases_opened": false
+}

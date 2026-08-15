@@ -1,6 +1,6 @@
 # Development candidate results
 
-**Status:** first-round local integration evidence complete; Qwen3 0.6B is the only automatic-gate survivor, but no model is selected yet.
+**Status:** first-round and local quantization evidence complete; corrected Q4 leads provisionally, but no model is selected yet.
 
 These runs use the pinned CPU-only `llama.cpp` build on an Intel macOS development machine. They cannot substitute for the published ADTC Ubuntu Standard Laptop or the official profiler. The 24 sealed synthetic cases remain unevaluated.
 
@@ -19,7 +19,11 @@ SmolLM2 completed only four adaptive cases without a hard failure. Its failures 
 
 Qwen3 0.6B passed the automatic safety envelope, but that does not award the two factual-explanation points. Human review found a contradiction in its ordinary installation-rejection answer, an overstatement about the current state in one bounded answer, and other phrases requiring review. A schema can reserve authority; it cannot prove free-form prose accurate or useful.
 
-The first round therefore rejects three candidates and advances Qwen3 0.6B only as a provisional survivor. Selection still requires an unchanged replication, blinded human review, official profiler evidence and a decision about whether a lower-bit quantization offers a better challenge-weighted accuracy/throughput/memory trade-off. No result here authorizes opening the sealed set.
+The first round therefore rejects three candidates and advances Qwen3 0.6B only as a provisional survivor. An unchanged Q8 replication later passed eleven of eleven with no repair. A clean-source Q4 comparison also passed the adaptive eleven-of-eleven gate, using one permitted format repair.
+
+The first clean-source Q4 was invalidated because its converter wrote both byte-identical tied vocabulary tensors. The official profiler exposed the error through a 751,632,384 parameter count and unexpectedly higher memory. A registered guard then omitted the duplicate only after proving the tie declaration and matching raw hashes. The corrected Q4 reports the same 596,049,920 parameters as Q8, is 37.96% smaller on disk and led the paired Intel Mac integration run on generation throughput, first-token latency and memory.
+
+That is not final selection. The profiler accuracy stage was skipped, the Mac had no temperature sensor and Q4 required one format repair. Blinded human review and the published Ubuntu target profile remain mandatory. Detailed paired values are in [quantization-round-results.md](quantization-round-results.md). No result here authorizes opening the sealed set.
 
 ## What the development loop corrected
 

@@ -14,9 +14,18 @@
       "binaries": [
         "llama-cli",
         "llama-bench",
-        "llama-server"
+        "llama-server",
+        "llama-quantize"
       ],
       "status": "built"
+    },
+    "conversion_only_environment": {
+      "platform": "Darwin x86_64",
+      "python": "3.11.14",
+      "torch": "2.2.2",
+      "transformers": "4.57.6",
+      "gguf": "0.19.0",
+      "reason_for_torch_deviation": "The pinned torch 2.11.0 converter requirement has no Intel macOS wheel. This environment is used only for BF16 safetensors-to-GGUF conversion, never benchmark inference."
     }
   },
   "adtc_profiler": {

@@ -4,11 +4,11 @@ An offline, safety-bounded explanation layer for difficult Android provisioning 
 
 ## Current status
 
-**Phase 2C: model acquisition and development evaluation in progress. Not submission-ready and not connected to a device.**
+**Phase 2D: local quantization comparison complete; human review and target Ubuntu reproduction pending. Not submission-ready and not connected to a device.**
 
 The repository was created from the [official ADTC 2026 submission template](https://github.com/Africa-Deep-Tech-Foundation/adtc-2026-submission-template). Model selection, team registration details, final measured benchmarks and the public download script remain pending. `download_model.sh` fails closed until a candidate wins the pre-registered benchmark.
 
-Public candidate weights are downloaded only to the ignored local `model/` directory and hash-verified before use; none is committed or selected yet. No phone, ADB session, APK, security control, VowLock key or commitment activation is used in this phase.
+Public candidate weights are downloaded only to the ignored local `model/` directory and hash-verified before use; none is committed or selected yet. Corrected Q4 currently leads the local resource comparison, but it needed one permitted format repair and has not passed human prose review or the target Ubuntu profile. No phone, ADB session, APK, security control, VowLock key or commitment activation is used in this phase.
 
 ## Research question
 
@@ -43,6 +43,8 @@ The model may explain a known state, classify a known failure, request missing n
 - [Static baseline result](docs/static-baseline-results.md)
 - [Development change log](docs/development-change-log.md)
 - [Development candidate results](docs/development-candidate-results.md)
+- [Quantization round results](docs/quantization-round-results.md)
+- [Machine-readable quantization results](benchmarks/quantization-results.json)
 - [Machine-readable frozen protocol](experiment-protocol.json)
 - [Frozen prompt hashes](prompts/MANIFEST.json)
 - [Opaque sealed-set hashes](fixtures/sealed-manifest.json)
@@ -90,6 +92,7 @@ Official sources: [challenge](https://adtc-2026.devpost.com/), [rules](https://a
 - [x] Freeze exactly two final test prompts.
 - [ ] Implement and test the credential-free, idempotent model download.
 - [ ] Run the official profiler on the target Ubuntu profile.
+- [x] Run a paired official-profiler integration comparison without claiming target performance.
 - [ ] Publish measured results without extrapolation or invented values.
 - [ ] Keep model weights, secrets, customer data and signed APKs out of Git.
 - [ ] Make the repository public before evaluation.

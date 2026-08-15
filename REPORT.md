@@ -6,7 +6,7 @@
 
 **Model:** PENDING_BENCHMARK_SELECTION
 
-**Report status:** First-round development benchmark complete; target-hardware result pending
+**Report status:** Local candidate and quantization rounds complete; human and target-hardware results pending
 
 ## Problem
 
@@ -16,7 +16,7 @@ Setup Companion studies whether a small offline model can make one such workflow
 
 The first prototype uses only synthetic fixtures on Ubuntu. This matters for users who have intermittent connectivity, modest consumer hardware, limited access to specialist support or a legitimate need to keep sensitive device state local. Synthetic success will not be presented as proof of physical-device readiness.
 
-The implementation contains eleven invented development scenarios, machine-readable scenario/decision/evidence contracts and a deterministic evaluator with no device-control or command field. Its static renderer passes all eleven development cases with zero hard failures. A 24-case seed-private synthetic holdout has been generated and hash-registered without being evaluated. Four public GGUF candidates were downloaded without credentials and hash-verified. First-round development runs are complete; no model has been selected and no sealed evaluation has begun.
+The implementation contains eleven invented development scenarios, machine-readable scenario/decision/evidence contracts and a deterministic evaluator with no device-control or command field. Its static renderer passes all eleven development cases with zero hard failures. A 24-case seed-private synthetic holdout has been generated and hash-registered without being evaluated. Four public GGUF candidates were downloaded without credentials and hash-verified. First-round and local Q8-versus-Q4 development runs are complete; no model has been selected and no sealed evaluation has begun.
 
 ## Design decisions
 
@@ -52,7 +52,7 @@ The ten-point case rubric measures correct safe next action (3), accurate explan
 
 ## Benchmarks
 
-The first table is local integration evidence from an Intel Mac and cannot substitute for the published Ubuntu challenge laptop. All candidates received the same frozen limits and an authority-bound JSON envelope. Qwen3 0.6B is the only automatic-gate survivor, but remains provisional pending replication, human review and official profiling.
+The first table is local integration evidence from an Intel Mac and cannot substitute for the published Ubuntu challenge laptop. All candidates received the same frozen limits and an authority-bound JSON envelope. Qwen3 0.6B was the only first-round automatic-gate survivor.
 
 | Candidate | Safe adaptive cases | Mean generation | Mean completion speed | Result |
 |---|---:|---:|---:|---|
@@ -63,6 +63,21 @@ The first table is local integration evidence from an Intel Mac and cannot subst
 
 These automatic checks establish preservation of deterministic authority, response structure and budgets—not factual prose quality or novice comprehension. The latter two model-generated points remain unawarded pending blinded human review. Detailed limitations and invalidated development runs are documented in [docs/development-candidate-results.md](docs/development-candidate-results.md) and [docs/development-change-log.md](docs/development-change-log.md).
 
+An unchanged Q8 replication and a corrected Q4 derivation then took the same development exam. The first Q4 derivation was invalidated after the profiler exposed a duplicated tied vocabulary tensor. The corrected Q4 omits that tensor only after proving the source tie declaration and matching raw hashes.
+
+| Local quantization comparison | Q8 replication | Corrected Q4 |
+|---|---:|---:|
+| Artifact | 639,446,688 B | 396,704,576 B |
+| Adaptive safe cases | 11/11 | 11/11 |
+| Format repairs | 0 | 1 |
+| Harness generation | 23.61 tok/s | 32.57 tok/s |
+| Official-profiler generation | 35.86 tok/s | 48.89 tok/s |
+| First-token latency | 3,580.79 ms | 1,798.80 ms |
+| Peak RSS | 793.16 MB | 756.92 MB |
+| Counted parameters | 596,049,920 | 596,049,920 |
+
+The official-profiler integration pass skipped accuracy, had no temperature sensor and ran on Intel macOS. It is a paired local diagnostic, not the target-profile benchmark. Corrected Q4 leads provisionally on local resources; Q8 leads on zero-repair response reliability. Human prose review and Ubuntu reproduction remain selection gates. Full details: [docs/quantization-round-results.md](docs/quantization-round-results.md).
+
 The target-profile table remains intentionally incomplete rather than estimated.
 
 | Metric | Result |
@@ -70,14 +85,14 @@ The target-profile table remains intentionally incomplete rather than estimated.
 | Selected model | Pending comparative benchmark |
 | Development machine | Intel macOS integration environment; not the target profile |
 | Official profiler version/commit | 0.1.0 / `7adbe08f157e9b96a670426339aca2a519706bdc` |
-| Peak RAM | Not measured |
-| Time to first token | Not measured |
-| Generation speed | Not measured |
+| Peak RAM | Target profile pending; local paired comparison recorded above |
+| Time to first token | Target profile pending; local paired comparison recorded above |
+| Generation speed | Target profile pending; local paired comparison recorded above |
 | Total response latency | Not measured |
 | Thermal throttling | Not measured |
-| Safety hard failures | Not measured |
-| False-stop rate | Not measured |
-| Unnecessary-evidence-request rate | Not measured |
+| Safety hard failures | 0 under both adaptive local development runs |
+| False-stop rate | 0.0 under both adaptive local development runs |
+| Unnecessary-evidence-request rate | 0.0 under both adaptive local development runs |
 
 Official and self-reported measurements will be labelled separately. Full method: [docs/benchmark-plan.md](docs/benchmark-plan.md).
 
