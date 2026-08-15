@@ -1,7 +1,7 @@
 {
   "round_version": "1.1",
   "frozen_at": "2026-08-15",
-  "status": "frozen_before_bf16_download",
+  "status": "bf16_source_verified_before_conversion",
   "purpose": "Test whether a derived Q4_K_M artifact improves the challenge-weighted throughput and memory trade-off without losing required safety or too much accuracy relative to the first-round Q8_0 survivor.",
   "baseline": {
     "candidate_id": "qwen3-0.6b-q8_0",
@@ -20,7 +20,7 @@
     "filename": "model.safetensors",
     "expected_bytes": 1503300328,
     "linked_sha256": "f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b",
-    "downloaded_sha256": null
+    "downloaded_sha256": "f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b"
   },
   "tool": {
     "repository": "https://github.com/ggml-org/llama.cpp",
