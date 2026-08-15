@@ -53,6 +53,17 @@ class ProtocolTests(unittest.TestCase):
             self.assertEqual(item["linked_sha256"], item["downloaded_sha256"])
             self.assertTrue(item["url"].startswith("https://huggingface.co/"))
 
+    def test_quantization_round_is_frozen_before_derivation(self):
+        round_plan = self.load_json("benchmarks/quantization-round.json")
+        self.assertEqual("frozen_before_quantization", round_plan["status"])
+        self.assertEqual("Q4_K_M", round_plan["tool"]["quantization"])
+        self.assertEqual(
+            "9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031",
+            round_plan["source"]["sha256"],
+        )
+        self.assertIsNone(round_plan["derived"]["sha256"])
+        self.assertIn("Do not evaluate", round_plan["sealed_set_policy"])
+
     def test_sealed_manifest_is_opaque_and_seed_free(self):
         manifest = self.load_json("fixtures/sealed-manifest.json")
         self.assertEqual("sealed", manifest["split"])

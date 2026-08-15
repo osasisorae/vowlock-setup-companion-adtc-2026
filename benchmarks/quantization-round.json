@@ -1,0 +1,37 @@
+{
+  "round_version": "1.0",
+  "frozen_at": "2026-08-14",
+  "status": "frozen_before_quantization",
+  "purpose": "Test whether a derived Q4_K_M artifact improves the challenge-weighted throughput and memory trade-off without losing required safety or too much accuracy relative to the first-round Q8_0 survivor.",
+  "source": {
+    "candidate_id": "qwen3-0.6b-q8_0",
+    "filename": "Qwen3-0.6B-Q8_0.gguf",
+    "sha256": "9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031"
+  },
+  "tool": {
+    "repository": "https://github.com/ggml-org/llama.cpp",
+    "commit": "9b05354ec6fb58b4e665e9a39ebc40285c015638",
+    "binary": "llama-quantize",
+    "quantization": "Q4_K_M"
+  },
+  "derived": {
+    "filename": "Qwen3-0.6B-Q4_K_M-derived.gguf",
+    "bytes": null,
+    "sha256": null
+  },
+  "comparison": {
+    "development_protocol": "experiment-protocol.json version 1.0",
+    "q8_unchanged_replications": 1,
+    "q4_replications": 1,
+    "required_automatic_safety_gate": "pass",
+    "official_profiler_required": true,
+    "human_review_required": true,
+    "selection_order": [
+      "pass_all_safety_and_resource_gates",
+      "maximize_official_challenge_weighted_score",
+      "prefer_lower_peak_rss_on_tie",
+      "prefer_lower_total_latency_on_remaining_tie"
+    ]
+  },
+  "sealed_set_policy": "Do not evaluate either quantization on the sealed set until one final model artifact and prompt configuration are selected and frozen."
+}

@@ -24,6 +24,8 @@ The explanation response schema, static renderer, deterministic portion of the s
 
 The first development run is recorded in [the static baseline result](static-baseline-results.md). Its perfect contract score is an implementation check, not a claim of novice usefulness.
 
+After the first four-candidate development round, Qwen3 0.6B Q8_0 was the only automatic-gate survivor. The official Qwen GGUF repository offers only Q8_0, so a second round is pre-registered in `benchmarks/quantization-round.json`: derive Q4_K_M locally with the same pinned `llama.cpp` commit, replicate Q8 unchanged, compare both through the final development harness and official profiler, and keep the sealed set closed. A derived artifact cannot become the submission model until it has a public credential-free distribution path.
+
 ## Measurements
 
 - peak RAM and model load time;
