@@ -4,11 +4,11 @@ An offline, safety-bounded explanation layer for difficult Android provisioning 
 
 ## Current status
 
-**Phase 2E: first proactive product variant and blind AI-assisted Q4/Q8 review complete; target Ubuntu inference and independent human validation remain. Not submission-ready and not connected to a device.**
+**Phase 2F: proactive product variant, blind AI-assisted review and virtual Ubuntu Q4 reproduction complete; physical target profiling and independent human validation remain. Not submission-ready and not connected to a device.**
 
 The repository was created from the [official ADTC 2026 submission template](https://github.com/Africa-Deep-Tech-Foundation/adtc-2026-submission-template). Model selection, team registration details, final measured benchmarks and the public download script remain pending. `download_model.sh` fails closed until a candidate wins the pre-registered benchmark.
 
-Public candidate weights are downloaded only to the ignored local `model/` directory and hash-verified before use; none is committed or finally selected yet. Corrected Q4 leads the local resource comparison and the eleven-case blind AI-assisted prose comparison, but it needed one permitted format repair and has not passed target Ubuntu inference or independent human validation. No phone, ADB session, APK, security control, VowLock key or commitment activation is used in this phase.
+Public candidate weights are downloaded only to the ignored local `model/` directory and hash-verified before use; none is committed or finally selected yet. Corrected Q4 leads the local resource and blind prose comparisons, then passed all eleven development cases with zero repairs inside an offline Ubuntu 22.04 VM. Physical Standard Laptop profiling, full accuracy and independent human validation remain. No phone, ADB session, APK, security control, VowLock key or commitment activation is used in this phase.
 
 The first product implementation now includes a separately documented [proactive agent variant](docs/proactive-agent-v2.md). It speaks after declared workflow, device and technician events instead of waiting behind an explanation button. This does not select Q8 as the challenge model: Q8 powers the current product experiment because it was the zero-repair first-round survivor, while Q4 still leads provisionally on local resources.
 
@@ -47,9 +47,11 @@ The model may explain a known state, classify a known failure, request missing n
 - [Development candidate results](docs/development-candidate-results.md)
 - [Quantization round results](docs/quantization-round-results.md)
 - [Blind AI-assisted Q4/Q8 prose review](docs/ai-assisted-blind-review.md)
+- [Virtual Ubuntu Q4 reproduction](docs/ubuntu-q4-virtual-reproduction.md)
 - [Proactive agent V2 design and first live result](docs/proactive-agent-v2.md)
 - [Machine-readable quantization results](benchmarks/quantization-results.json)
 - [Machine-readable blind review result](benchmarks/ai-assisted-blind-review-results.json)
+- [Machine-readable virtual Ubuntu result](benchmarks/ubuntu-q4-virtual-results.json)
 - [Machine-readable frozen protocol](experiment-protocol.json)
 - [Frozen prompt hashes](prompts/MANIFEST.json)
 - [Opaque sealed-set hashes](fixtures/sealed-manifest.json)
@@ -100,7 +102,7 @@ Official sources: [challenge](https://adtc-2026.devpost.com/), [rules](https://a
 - [x] Run a paired official-profiler integration comparison without claiming target performance.
 - [ ] Publish measured results without extrapolation or invented values.
 - [ ] Keep model weights, secrets, customer data and signed APKs out of Git.
-- [ ] Make the repository public before evaluation.
+- [x] Make the repository public before evaluation.
 
 ## License
 

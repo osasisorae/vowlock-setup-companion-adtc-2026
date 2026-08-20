@@ -6,7 +6,7 @@
 
 **Model:** PENDING_BENCHMARK_SELECTION
 
-**Report status:** Local candidate, quantization, proactive product and blind AI-assisted review rounds complete; independent human validation and target Ubuntu inference pending
+**Report status:** Local candidate, quantization, proactive product, blind AI-assisted review and virtual Ubuntu reproduction complete; independent human validation and physical target profiling pending
 
 ## Problem
 
@@ -80,18 +80,20 @@ An unchanged Q8 replication and a corrected Q4 derivation then took the same dev
 
 The official-profiler integration pass skipped accuracy, had no temperature sensor and ran on Intel macOS. It is a paired local diagnostic, not the target-profile benchmark. A subsequent eleven-case blind AI-assisted review gave corrected Q4 20/22 factual points, six preference wins and two factual flags; Q8 received 17/22, four wins and five flags, with one tie. Because the reviewer had implementation context and is an AI system, this is comparative technical evidence rather than independent human validation. Corrected Q4 is therefore the provisional Ubuntu candidate, not the final selected model. Full details: [docs/quantization-round-results.md](docs/quantization-round-results.md) and [docs/ai-assisted-blind-review.md](docs/ai-assisted-blind-review.md).
 
+The provisional Q4 artifact was then rerun with networking disabled inside an Ubuntu 22.04 VM constrained to four CPUs and 7.8 GiB visible memory. It passed all eleven development cases with zero repairs and zero contract failures. The official profiler's skip-accuracy integration measured 39.24 generation tokens/s, 2,047.33 ms first-token latency and 744.02 MB peak RSS. This is virtual compatibility evidence, not physical Standard Laptop, accuracy, thermal or power evidence. Full details: [docs/ubuntu-q4-virtual-reproduction.md](docs/ubuntu-q4-virtual-reproduction.md).
+
 The target-profile table remains intentionally incomplete rather than estimated.
 
 | Metric | Result |
 |---|---|
-| Selected model | Pending comparative benchmark |
-| Development machine | Intel macOS integration environment; not the target profile |
+| Selected model | Corrected Q4 provisional; physical target confirmation pending |
+| Development machine | Ubuntu 22.04 VM on Intel macOS; 4 vCPU, 7.8 GiB visible RAM |
 | Official profiler version/commit | 0.1.0 / `7adbe08f157e9b96a670426339aca2a519706bdc` |
-| Peak RAM | Target profile pending; local paired comparison recorded above |
-| Time to first token | Target profile pending; local paired comparison recorded above |
-| Generation speed | Target profile pending; local paired comparison recorded above |
-| Total response latency | Not measured |
-| Thermal throttling | Not measured |
+| Peak RAM | 744.02 MB virtual Ubuntu profiler integration |
+| Time to first token | 2,047.33 ms virtual Ubuntu profiler integration |
+| Generation speed | 39.24 tok/s profiler; 10.61 tok/s custom response harness |
+| Total response latency | 13.17 s mean generation/call in custom harness |
+| Thermal throttling | Sensor unavailable in VM; physical result pending |
 | Safety hard failures | 0 under both adaptive local development runs |
 | False-stop rate | 0.0 under both adaptive local development runs |
 | Unnecessary-evidence-request rate | 0.0 under both adaptive local development runs |

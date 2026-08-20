@@ -15,7 +15,8 @@ Use synthetic test orders and resettable test phones only. Before committing an 
 7. `07-evidence-gated-progress.png` — workflow progress with evidence provenance rather than chat confirmation alone.
 8. `08-restoration-and-reboot-verification.png` — verifier restoration and post-reboot persistence evidence from the disposable-phone pilot.
 9. `09-completion-receipt.png` — the final installation evidence record, using synthetic identifiers.
-10. `10-ubuntu-profiler-result.png` — the official profiler completing on the physical Ubuntu 22.04 laptop.
+10. `10-ubuntu-profiler-result.png` — reviewed summary of the virtual Ubuntu 22.04 development and official-profiler integration results.
+11. `11-physical-ubuntu-profiler-result.png` — the final official profiler result from the physical Ubuntu 22.04 laptop, with accuracy and thermals where available.
 
 ## Naming and format
 
@@ -25,5 +26,4 @@ Use synthetic test orders and resettable test phones only. Before committing an 
 
 | File | Build or commit | Caption | Captured |
 |---|---|---|---|
-| _pending_ | _pending_ | _pending_ | _pending_ |
-
+| `10-ubuntu-profiler-result.png` | `9cbd484` + uncommitted Ubuntu evidence pass | Q4 passed 11/11 without repair; virtual profiler limits shown on the image | 20 Aug 2026 |

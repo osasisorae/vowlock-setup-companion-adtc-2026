@@ -44,3 +44,11 @@ Quantization protocol 1.2 registers a narrow repair before creating another arti
 The corrected 396,704,576-byte Q4 reports the same 596,049,920 parameters as the official Q8. It passed all eleven cases under the adaptive gate, using one permitted format repair when `dev_reboot_mismatch` omitted its closing JSON brace. Q8's unchanged replication passed eleven of eleven without repair.
 
 In the paired Intel Mac integration run, the corrected Q4 was 37.96% smaller on disk, 36.34% faster in official-profiler generation, 49.76% lower in first-token latency and 4.57% lower in peak RSS than Q8. The profiler accuracy stage was skipped and no temperature sensor was exposed. These measurements select no challenge winner: human prose review and an Ubuntu target-profile replication remain required, and the sealed set remains unopened.
+
+## 20 August 2026 — blind review and virtual Ubuntu reproduction
+
+An eleven-case blind AI-assisted prose comparison favored corrected Q4: 20/22 factual points and six preference wins, versus Q8's 17/22 and four wins, with one tie. The reviewer had implementation context, so this is comparative technical evidence rather than independent human validation.
+
+The pinned Linux runtime was then compiled inside Ubuntu 22.04 from the verified read-only `llama.cpp` checkout. The first harness launch stopped before model startup because the repository root was absent from Python's import path. Setting `PYTHONPATH=/work` repaired the environment without changing the model, prompts, fixtures or limits.
+
+With networking disabled, corrected Q4 passed all eleven development cases with zero adaptive repairs and zero contract failures. The official profiler's skip-accuracy path measured 39.24 generation tokens/s, 2,047.33 ms first-token latency and 744.02 MB peak RSS. The VM exposed no thermal sensor, accuracy was skipped and the narrow profiler integration used Python 3.10 despite the packaged profiler's Python 3.11 requirement. Q4 therefore advances only as the provisional physical-Ubuntu candidate. The sealed set remains unopened.

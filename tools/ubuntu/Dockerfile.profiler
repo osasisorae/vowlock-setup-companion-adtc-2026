@@ -1,0 +1,10 @@
+FROM vowlock-adtc-ubuntu22:2026-08-20
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends python3-pip \
+    && rm -rf /var/lib/apt/lists/* \
+    && python3 -m pip install --no-cache-dir \
+        click==8.1.8 \
+        jsonschema==4.23.0 \
+        psutil==6.1.1 \
+        rich==13.9.4

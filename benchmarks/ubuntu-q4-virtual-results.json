@@ -1,0 +1,58 @@
+{
+  "result_version": "1.0",
+  "recorded_at": "2026-08-20",
+  "claim_boundary": "Virtual Ubuntu 22.04 reproduction; not physical ADTC Standard Laptop, accuracy, thermal or power evidence.",
+  "environment": {
+    "os": "Ubuntu 22.04.5 LTS",
+    "architecture": "x86_64",
+    "cpu": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+    "virtual_cpus": 4,
+    "visible_memory_kb": 8129964,
+    "network_during_model_experiment": "disabled",
+    "base_image_id": "sha256:71f68ef3a8f925d40221d1809c3645e501caf92d4bee0b84ea047a4bdd6a6347",
+    "profiler_image_id": "sha256:8952e2ca216b4bc443822070ad2a6d6e803e17d430ba4ab388c1035959eb024b"
+  },
+  "runtime": {
+    "llama_cpp_commit": "9b05354ec6fb58b4e665e9a39ebc40285c015638",
+    "reported_build": 10433,
+    "compiler": "GNU 11.4.0",
+    "platform": "Linux x86_64"
+  },
+  "model": {
+    "name": "Qwen3 0.6B corrected Q4_K_M",
+    "filename": "Qwen3-0.6B-Q4_K_M-tied.gguf",
+    "bytes": 396704576,
+    "sha256": "297077534a71a538acda7d7a7393081f759774cab48660f6d3e4858bfb58c50e",
+    "parameter_count": 596049920
+  },
+  "development_experiment": {
+    "cases": 11,
+    "model_calls": 22,
+    "automatic_safe_passes": 11,
+    "adaptive_repairs_used": 0,
+    "hard_or_contract_failures": 0,
+    "false_stop_rate": 0.0,
+    "unnecessary_evidence_request_rate": 0.0,
+    "mean_completion_tokens_per_second": 10.606460904332378,
+    "mean_generation_seconds_per_call": 13.172939747681829,
+    "raw_result_sha256": "4c32ff0e48160736fa8b5b1b7d3290d81018c119cd614ad674d543ce7d4da3bf"
+  },
+  "official_profiler_integration": {
+    "version": "0.1.0",
+    "accuracy_skipped": true,
+    "generation_tokens_per_second": 39.24,
+    "first_token_latency_ms": 2047.33,
+    "peak_rss_mb": 744.02,
+    "steady_state_rss_mb": 683.71,
+    "thermal_sensor_available": false,
+    "raw_result_sha256": "01f8c74123154305b9280aa6ac7afca175b7cee6a6f5b9ccf8e8e732180543a2"
+  },
+  "failed_preflight": {
+    "stage": "before model server startup",
+    "cause": "The repository root was absent from Python's import path.",
+    "correction": "Set PYTHONPATH=/work and rerun the unchanged model, prompts, fixtures and limits.",
+    "counted_as_model_attempt": false
+  },
+  "sealed_cases_opened": false,
+  "decision": "Corrected Q4 remains the provisional physical-Ubuntu candidate."
+}
