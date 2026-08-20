@@ -26,8 +26,12 @@ Protocol 1.2 registered a narrow correction before another artifact was made. `t
 
 The profiler accuracy stage was intentionally skipped for this integration comparison, and this Intel Mac exposed no temperature sensor. These numbers cannot be presented as Ubuntu challenge-profile performance.
 
-## What the automatic gate cannot decide
+## What the automatic gate could not decide
 
 The corrected Q4 needed one permitted format repair after omitting a closing JSON brace on `dev_reboot_mismatch`. The repair did not change the deterministic STOP decision. Q8 needed no repair.
 
-Both quantizations have prose that deserves human review. A constant-bound JSON schema can preserve authority, but it cannot prove that phrases such as “requires immediate action” are clear, supported or useful to a novice. Q4 leads on local resources; no model is selected until human review and target Ubuntu replication are complete.
+Both quantizations produced prose that deserved direct review. A constant-bound JSON schema can preserve authority, but it cannot prove that phrases such as “requires immediate action” are clear, supported or useful to a novice.
+
+An eleven-case blind AI-assisted comparison was frozen before its A/B key was opened. Corrected Q4 received 20/22 factual points, six preference wins and two factual flags. Q8 received 17/22 factual points, four wins and five factual flags; one case tied. Q4 therefore leads on both local resources and this prose comparison.
+
+This review is not presented as independent human evidence: the Codex reviewer knew the implementation and had previously seen one Q4 response while checking the review tool. Q4 advances as the provisional Ubuntu candidate. Target Ubuntu inference and an independent human spot-check remain before final selection. See [ai-assisted-blind-review.md](ai-assisted-blind-review.md).

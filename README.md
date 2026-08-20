@@ -4,11 +4,13 @@ An offline, safety-bounded explanation layer for difficult Android provisioning 
 
 ## Current status
 
-**Phase 2D: local quantization comparison complete; human review and target Ubuntu reproduction pending. Not submission-ready and not connected to a device.**
+**Phase 2E: first proactive product variant and blind AI-assisted Q4/Q8 review complete; target Ubuntu inference and independent human validation remain. Not submission-ready and not connected to a device.**
 
 The repository was created from the [official ADTC 2026 submission template](https://github.com/Africa-Deep-Tech-Foundation/adtc-2026-submission-template). Model selection, team registration details, final measured benchmarks and the public download script remain pending. `download_model.sh` fails closed until a candidate wins the pre-registered benchmark.
 
-Public candidate weights are downloaded only to the ignored local `model/` directory and hash-verified before use; none is committed or selected yet. Corrected Q4 currently leads the local resource comparison, but it needed one permitted format repair and has not passed human prose review or the target Ubuntu profile. No phone, ADB session, APK, security control, VowLock key or commitment activation is used in this phase.
+Public candidate weights are downloaded only to the ignored local `model/` directory and hash-verified before use; none is committed or finally selected yet. Corrected Q4 leads the local resource comparison and the eleven-case blind AI-assisted prose comparison, but it needed one permitted format repair and has not passed target Ubuntu inference or independent human validation. No phone, ADB session, APK, security control, VowLock key or commitment activation is used in this phase.
+
+The first product implementation now includes a separately documented [proactive agent variant](docs/proactive-agent-v2.md). It speaks after declared workflow, device and technician events instead of waiting behind an explanation button. This does not select Q8 as the challenge model: Q8 powers the current product experiment because it was the zero-repair first-round survivor, while Q4 still leads provisionally on local resources.
 
 ## Research question
 
@@ -44,7 +46,10 @@ The model may explain a known state, classify a known failure, request missing n
 - [Development change log](docs/development-change-log.md)
 - [Development candidate results](docs/development-candidate-results.md)
 - [Quantization round results](docs/quantization-round-results.md)
+- [Blind AI-assisted Q4/Q8 prose review](docs/ai-assisted-blind-review.md)
+- [Proactive agent V2 design and first live result](docs/proactive-agent-v2.md)
 - [Machine-readable quantization results](benchmarks/quantization-results.json)
+- [Machine-readable blind review result](benchmarks/ai-assisted-blind-review-results.json)
 - [Machine-readable frozen protocol](experiment-protocol.json)
 - [Frozen prompt hashes](prompts/MANIFEST.json)
 - [Opaque sealed-set hashes](fixtures/sealed-manifest.json)

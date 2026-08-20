@@ -6,7 +6,7 @@
 
 **Model:** PENDING_BENCHMARK_SELECTION
 
-**Report status:** Local candidate and quantization rounds complete; human and target-hardware results pending
+**Report status:** Local candidate, quantization, proactive product and blind AI-assisted review rounds complete; independent human validation and target Ubuntu inference pending
 
 ## Problem
 
@@ -17,6 +17,8 @@ Setup Companion studies whether a small offline model can make one such workflow
 The first prototype uses only synthetic fixtures on Ubuntu. This matters for users who have intermittent connectivity, modest consumer hardware, limited access to specialist support or a legitimate need to keep sensitive device state local. Synthetic success will not be presented as proof of physical-device readiness.
 
 The implementation contains eleven invented development scenarios, machine-readable scenario/decision/evidence contracts and a deterministic evaluator with no device-control or command field. Its static renderer passes all eleven development cases with zero hard failures. A 24-case seed-private synthetic holdout has been generated and hash-registered without being evaluated. Four public GGUF candidates were downloaded without credentials and hash-verified. First-round and local Q8-versus-Q4 development runs are complete; no model has been selected and no sealed evaluation has begun.
+
+A proactive product variant now tests a fifth interaction condition: the local model receives a verified checkpoint and event, then proposes one typed conversational or read-only diagnostic move. Its first bundled Mac turn ran successfully, but comparative usefulness and human comprehension remain unmeasured. Details are in [docs/proactive-agent-v2.md](docs/proactive-agent-v2.md).
 
 ## Design decisions
 
@@ -61,7 +63,7 @@ The first table is local integration evidence from an Intel Mac and cannot subst
 | Qwen3 1.7B Q8_0 | 5/11 | 28.53 s/call | 9.13 tok/s | Rejected: truncation and time excess |
 | SmolLM2 1.7B Q4_K_M | 4/11 | 30.78 s/call | 7.77 tok/s | Rejected: truncation and time excess |
 
-These automatic checks establish preservation of deterministic authority, response structure and budgets—not factual prose quality or novice comprehension. The latter two model-generated points remain unawarded pending blinded human review. Detailed limitations and invalidated development runs are documented in [docs/development-candidate-results.md](docs/development-candidate-results.md) and [docs/development-change-log.md](docs/development-change-log.md).
+These automatic checks establish preservation of deterministic authority, response structure and budgets—not factual prose quality or novice comprehension. Detailed limitations and invalidated development runs are documented in [docs/development-candidate-results.md](docs/development-candidate-results.md) and [docs/development-change-log.md](docs/development-change-log.md).
 
 An unchanged Q8 replication and a corrected Q4 derivation then took the same development exam. The first Q4 derivation was invalidated after the profiler exposed a duplicated tied vocabulary tensor. The corrected Q4 omits that tensor only after proving the source tie declaration and matching raw hashes.
 
@@ -76,7 +78,7 @@ An unchanged Q8 replication and a corrected Q4 derivation then took the same dev
 | Peak RSS | 793.16 MB | 756.92 MB |
 | Counted parameters | 596,049,920 | 596,049,920 |
 
-The official-profiler integration pass skipped accuracy, had no temperature sensor and ran on Intel macOS. It is a paired local diagnostic, not the target-profile benchmark. Corrected Q4 leads provisionally on local resources; Q8 leads on zero-repair response reliability. Human prose review and Ubuntu reproduction remain selection gates. Full details: [docs/quantization-round-results.md](docs/quantization-round-results.md).
+The official-profiler integration pass skipped accuracy, had no temperature sensor and ran on Intel macOS. It is a paired local diagnostic, not the target-profile benchmark. A subsequent eleven-case blind AI-assisted review gave corrected Q4 20/22 factual points, six preference wins and two factual flags; Q8 received 17/22, four wins and five flags, with one tie. Because the reviewer had implementation context and is an AI system, this is comparative technical evidence rather than independent human validation. Corrected Q4 is therefore the provisional Ubuntu candidate, not the final selected model. Full details: [docs/quantization-round-results.md](docs/quantization-round-results.md) and [docs/ai-assisted-blind-review.md](docs/ai-assisted-blind-review.md).
 
 The target-profile table remains intentionally incomplete rather than estimated.
 

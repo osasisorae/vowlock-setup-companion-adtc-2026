@@ -1,0 +1,40 @@
+{
+  "result_version": "1.0",
+  "recorded_at": "2026-08-20",
+  "purpose": "linux compatibility check only",
+  "challenge_profile_claim": false,
+  "environment": {
+    "virtualization": "Colima on Intel macOS",
+    "container_image": "ubuntu:22.04",
+    "container_image_digest": "sha256:2edbbc5dc405e9612ba3584ce95480277e3eb374407b5505fe26f17df77c7dbc",
+    "distribution": "Ubuntu 22.04.5 LTS",
+    "architecture": "x86_64",
+    "virtual_cpus": 4,
+    "visible_memory": "7.8 GiB",
+    "swap": "0 B"
+  },
+  "test_suite": {
+    "command": "python3 -m unittest discover -s tests -v",
+    "tests_run": 36,
+    "passed": 36,
+    "failed": 0,
+    "duration_seconds": 0.279
+  },
+  "public_clone_reproduction": {
+    "repository": "https://github.com/osasisorae/vowlock-setup-companion-adtc-2026",
+    "commit": "580ce78f3d788ce0596bc25f97f228763815ecab",
+    "tests_run": 36,
+    "passed": 35,
+    "failed": 0,
+    "skipped": 1,
+    "expected_skip": "The private sealed fixture set is intentionally absent from the public repository.",
+    "status": "passed"
+  },
+  "model_inference_run": false,
+  "sealed_cases_opened": false,
+  "limitations": [
+    "The CPU is virtualized and is not the published ADTC Standard Laptop processor.",
+    "Thermal sensors and throttling evidence are not available from this container.",
+    "This run establishes Linux test compatibility only; it is not a throughput, memory or accuracy benchmark."
+  ]
+}

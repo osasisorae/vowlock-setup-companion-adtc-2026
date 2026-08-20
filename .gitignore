@@ -19,3 +19,6 @@ audit.json
 benchmarks/results/
 fixtures/sealed/
 fixtures/.sealed-seed
+
+# Local blinded human-review packets and responses
+review/local/

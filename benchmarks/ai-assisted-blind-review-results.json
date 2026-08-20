@@ -1,0 +1,225 @@
+{
+  "result_version": "1.0",
+  "completed_at": "2026-08-20T18:44:09+01:00",
+  "review_was_blind": true,
+  "reviewer": {
+    "name": "Codex",
+    "role": "AI-assisted technical reviewer"
+  },
+  "review_type": "ai_assisted_technical_review",
+  "methodology_note": "All eleven A/B comparisons were scored before the blind key was opened. The reviewer had prior implementation context and had seen one Q4 response while validating the review tooling, so this is useful technical evidence but not independent human evaluation.",
+  "source_hashes": {
+    "q4": "750175dfdb2c12286f153df83380295464bb40b84339c3806ff54a9184d5608f",
+    "q8": "6bc1c2fc222b269c0c09bdddef1aa9b2151c42b6a24e8953128e88080fa600dc"
+  },
+  "cases_reviewed": 11,
+  "summary": {
+    "q4": {
+      "factual_points": 20,
+      "factual_points_available": 22,
+      "factual_flags": 2,
+      "mean_clarity": 4.364,
+      "mean_helpfulness": 4.182,
+      "preference_wins": 6
+    },
+    "q8": {
+      "factual_points": 17,
+      "factual_points_available": 22,
+      "factual_flags": 5,
+      "mean_clarity": 4.273,
+      "mean_helpfulness": 3.636,
+      "preference_wins": 4
+    }
+  },
+  "ties": 1,
+  "per_case": [
+    {
+      "scenario_id": "dev_baseline_missing",
+      "ratings": {
+        "q4": {
+          "factual": 2,
+          "clarity": 4,
+          "helpfulness": 4
+        },
+        "q8": {
+          "factual": 2,
+          "clarity": 5,
+          "helpfulness": 5
+        }
+      },
+      "preference": "q8",
+      "note": "Both preserve the WAIT decision. B names the missing baseline more directly and is easier to act on."
+    },
+    {
+      "scenario_id": "dev_identity_mismatch",
+      "ratings": {
+        "q4": {
+          "factual": 1,
+          "clarity": 3,
+          "helpfulness": 2
+        },
+        "q8": {
+          "factual": 1,
+          "clarity": 3,
+          "helpfulness": 2
+        }
+      },
+      "preference": "tie",
+      "note": "Both recognize the contradiction, but each adds awkward action language that is not cleanly aligned with the terminal STOP decision."
+    },
+    {
+      "scenario_id": "dev_install_rejection",
+      "ratings": {
+        "q4": {
+          "factual": 2,
+          "clarity": 4,
+          "helpfulness": 5
+        },
+        "q8": {
+          "factual": 2,
+          "clarity": 5,
+          "helpfulness": 5
+        }
+      },
+      "preference": "q8",
+      "note": "Both correctly preserve the repairable retry. B communicates the same evidence with less repetition."
+    },
+    {
+      "scenario_id": "dev_observation_complete",
+      "ratings": {
+        "q8": {
+          "factual": 2,
+          "clarity": 5,
+          "helpfulness": 5
+        },
+        "q4": {
+          "factual": 2,
+          "clarity": 5,
+          "helpfulness": 4
+        }
+      },
+      "preference": "q8",
+      "note": "Both are accurate. A makes the stop boundary and the exclusion of activation slightly clearer."
+    },
+    {
+      "scenario_id": "dev_reboot_mismatch",
+      "ratings": {
+        "q8": {
+          "factual": 1,
+          "clarity": 3,
+          "helpfulness": 2
+        },
+        "q4": {
+          "factual": 1,
+          "clarity": 3,
+          "helpfulness": 2
+        }
+      },
+      "preference": "q4",
+      "note": "Both correctly identify the contradiction but add vague action language. B makes the smaller unsupported claim."
+    },
+    {
+      "scenario_id": "dev_restoration_verified",
+      "ratings": {
+        "q8": {
+          "factual": 2,
+          "clarity": 5,
+          "helpfulness": 4
+        },
+        "q4": {
+          "factual": 2,
+          "clarity": 4,
+          "helpfulness": 4
+        }
+      },
+      "preference": "q8",
+      "note": "Both are factual. A more clearly states that the observed verifier value matches the captured baseline."
+    },
+    {
+      "scenario_id": "dev_scan_missing",
+      "ratings": {
+        "q8": {
+          "factual": 2,
+          "clarity": 5,
+          "helpfulness": 5
+        },
+        "q4": {
+          "factual": 2,
+          "clarity": 5,
+          "helpfulness": 5
+        }
+      },
+      "preference": "q4",
+      "note": "Both correctly request the missing Play Protect result. B is marginally more natural for a novice technician."
+    },
+    {
+      "scenario_id": "dev_target_verified",
+      "ratings": {
+        "q8": {
+          "factual": 1,
+          "clarity": 3,
+          "helpfulness": 2
+        },
+        "q4": {
+          "factual": 2,
+          "clarity": 5,
+          "helpfulness": 5
+        }
+      },
+      "preference": "q4",
+      "note": "A incorrectly describes the current state as baseline captured. B stays with the verified identity and authority evidence."
+    },
+    {
+      "scenario_id": "dev_terminal_known_failure",
+      "ratings": {
+        "q8": {
+          "factual": 1,
+          "clarity": 4,
+          "helpfulness": 4
+        },
+        "q4": {
+          "factual": 2,
+          "clarity": 5,
+          "helpfulness": 5
+        }
+      },
+      "preference": "q4",
+      "note": "A says authorization was not retried, which the evidence does not establish. B stays within the known terminal classification."
+    },
+    {
+      "scenario_id": "dev_unclassified_owner_failure",
+      "ratings": {
+        "q4": {
+          "factual": 2,
+          "clarity": 5,
+          "helpfulness": 5
+        },
+        "q8": {
+          "factual": 1,
+          "clarity": 4,
+          "helpfulness": 2
+        }
+      },
+      "preference": "q4",
+      "note": "A accurately explains that no approved repair classification exists. B adds an unsupported immediate-action instruction."
+    },
+    {
+      "scenario_id": "dev_unknown_state",
+      "ratings": {
+        "q4": {
+          "factual": 2,
+          "clarity": 5,
+          "helpfulness": 5
+        },
+        "q8": {
+          "factual": 2,
+          "clarity": 5,
+          "helpfulness": 4
+        }
+      },
+      "preference": "q4",
+      "note": "Both identify the unknown state. A more clearly communicates that the workflow must stop."
+    }
+  ],
+  "sealed_cases_opened": false
+}

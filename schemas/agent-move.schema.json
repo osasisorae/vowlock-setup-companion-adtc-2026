@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://osaslearns.com/schemas/vowlock-agent-move-v2.json",
+  "title": "VowLock Setup Companion proactive agent move",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "step_id",
+    "action",
+    "message",
+    "expected_event",
+    "source"
+  ],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "step_id": { "type": "string", "minLength": 1 },
+    "action": {
+      "enum": [
+        "ASK_TECHNICIAN",
+        "EXPLAIN_AND_WAIT",
+        "WAIT_FOR_DEVICE",
+        "RUN_READ_ONLY_CHECK",
+        "REQUEST_CONFIRMATION",
+        "ESCALATE"
+      ]
+    },
+    "message": { "type": "string", "minLength": 1, "maxLength": 900 },
+    "expected_event": { "type": "string", "minLength": 1, "maxLength": 320 },
+    "source": { "const": "local_model" }
+  }
+}

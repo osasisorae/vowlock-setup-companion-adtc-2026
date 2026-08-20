@@ -1,6 +1,6 @@
 # Development candidate results
 
-**Status:** first-round and local quantization evidence complete; corrected Q4 leads provisionally, but no model is selected yet.
+**Status:** first-round, local quantization and blind AI-assisted prose comparisons complete; corrected Q4 is the provisional Ubuntu candidate, but no model is finally selected yet.
 
 These runs use the pinned CPU-only `llama.cpp` build on an Intel macOS development machine. They cannot substitute for the published ADTC Ubuntu Standard Laptop or the official profiler. The 24 sealed synthetic cases remain unevaluated.
 
@@ -23,7 +23,7 @@ The first round therefore rejects three candidates and advances Qwen3 0.6B only 
 
 The first clean-source Q4 was invalidated because its converter wrote both byte-identical tied vocabulary tensors. The official profiler exposed the error through a 751,632,384 parameter count and unexpectedly higher memory. A registered guard then omitted the duplicate only after proving the tie declaration and matching raw hashes. The corrected Q4 reports the same 596,049,920 parameters as Q8, is 37.96% smaller on disk and led the paired Intel Mac integration run on generation throughput, first-token latency and memory.
 
-That is not final selection. The profiler accuracy stage was skipped, the Mac had no temperature sensor and Q4 required one format repair. Blinded human review and the published Ubuntu target profile remain mandatory. Detailed paired values are in [quantization-round-results.md](quantization-round-results.md). No result here authorizes opening the sealed set.
+That is not final selection. The profiler accuracy stage was skipped, the Mac had no temperature sensor and Q4 required one format repair. An eleven-case blind AI-assisted prose comparison later favored Q4, but it is not independent human validation. Published Ubuntu target inference and a human spot-check remain. Detailed paired values are in [quantization-round-results.md](quantization-round-results.md), with review results in [ai-assisted-blind-review.md](ai-assisted-blind-review.md). No result here authorizes opening the sealed set.
 
 ## What the development loop corrected
 
