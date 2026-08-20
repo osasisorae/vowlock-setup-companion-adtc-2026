@@ -25,10 +25,10 @@
     }
   ],
   "model": {
-    "name": "PENDING_BENCHMARK_SELECTION",
+    "name": "Qwen3 0.6B",
     "runtime": "llama.cpp",
-    "quantization": "PENDING_GGUF_QUANTIZATION",
-    "parameters_estimate": "PENDING",
+    "quantization": "Q4_K_M",
+    "parameters_estimate": "0.6B",
     "packaging": "binary_bundle"
   },
   "_runtime": {

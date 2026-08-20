@@ -40,3 +40,7 @@ Accuracy was deliberately skipped, and the virtual machine exposed no thermal se
 Q4 remains the provisional candidate for the physical Ubuntu laptop. Its smaller artifact, stronger local resource measurements, blind prose-review lead and zero-repair Ubuntu development run now point in the same direction. The 24 sealed cases remain unopened.
 
 The reviewed machine-readable summary is in [`benchmarks/ubuntu-q4-virtual-results.json`](../benchmarks/ubuntu-q4-virtual-results.json).
+
+## Publication postscript — 20 August 2026
+
+After this virtual result was frozen, Q4 was selected for the physical-laptop rejection gate and published through a credential-free release. The release reports the same 396,704,576-byte size and SHA-256 as the tested local artifact. The later decision is recorded separately in [`benchmarks/model-selection.json`](../benchmarks/model-selection.json), preserving this result as it was originally reviewed.

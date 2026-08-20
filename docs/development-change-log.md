@@ -52,3 +52,9 @@ An eleven-case blind AI-assisted prose comparison favored corrected Q4: 20/22 fa
 The pinned Linux runtime was then compiled inside Ubuntu 22.04 from the verified read-only `llama.cpp` checkout. The first harness launch stopped before model startup because the repository root was absent from Python's import path. Setting `PYTHONPATH=/work` repaired the environment without changing the model, prompts, fixtures or limits.
 
 With networking disabled, corrected Q4 passed all eleven development cases with zero adaptive repairs and zero contract failures. The official profiler's skip-accuracy path measured 39.24 generation tokens/s, 2,047.33 ms first-token latency and 744.02 MB peak RSS. The VM exposed no thermal sensor, accuracy was skipped and the narrow profiler integration used Python 3.10 despite the packaged profiler's Python 3.11 requirement. Q4 therefore advances only as the provisional physical-Ubuntu candidate. The sealed set remains unopened.
+
+## 20 August 2026 — Q4 selected and published before the sealed run
+
+The corrected Q4 artifact was selected from development evidence and published as a credential-free GitHub release. GitHub reports 396,704,576 bytes and SHA-256 `297077534a71a538acda7d7a7393081f759774cab48660f6d3e4858bfb58c50e`, matching the tested local artifact. `download_model.sh` now verifies that hash and refuses to replace a different existing file.
+
+The frozen benchmark plan lists the one-time sealed run before replacement of the guarded download script. We wired the already-selected artifact into the downloader first so the physical Ubuntu laptop can reproduce it. This is an ordering deviation, recorded before opening the sealed set. It changed no model bytes, prompt, response schema, fixture, verifier or resource limit and provided no sealed-set feedback. The sealed set remains unopened and must still run exactly once.

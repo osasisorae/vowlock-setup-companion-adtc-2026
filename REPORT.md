@@ -4,9 +4,9 @@
 
 **Domain:** autonomous_ai_agents
 
-**Model:** PENDING_BENCHMARK_SELECTION
+**Model:** Qwen3 0.6B Q4_K_M, corrected tied-embedding artifact
 
-**Report status:** Local candidate, quantization, proactive product, blind AI-assisted review and virtual Ubuntu reproduction complete; independent human validation and physical target profiling pending
+**Report status:** Candidate selected and publicly reproducible; independent human validation and physical target profiling pending
 
 ## Problem
 
@@ -16,7 +16,7 @@ Setup Companion studies whether a small offline model can make one such workflow
 
 The first prototype uses only synthetic fixtures on Ubuntu. This matters for users who have intermittent connectivity, modest consumer hardware, limited access to specialist support or a legitimate need to keep sensitive device state local. Synthetic success will not be presented as proof of physical-device readiness.
 
-The implementation contains eleven invented development scenarios, machine-readable scenario/decision/evidence contracts and a deterministic evaluator with no device-control or command field. Its static renderer passes all eleven development cases with zero hard failures. A 24-case seed-private synthetic holdout has been generated and hash-registered without being evaluated. Four public GGUF candidates were downloaded without credentials and hash-verified. First-round and local Q8-versus-Q4 development runs are complete; no model has been selected and no sealed evaluation has begun.
+The implementation contains eleven invented development scenarios, machine-readable scenario/decision/evidence contracts and a deterministic evaluator with no device-control or command field. Its static renderer passes all eleven development cases with zero hard failures. A 24-case seed-private synthetic holdout has been generated and hash-registered without being evaluated. Four public GGUF candidates were downloaded without credentials and hash-verified. First-round, local Q8-versus-Q4 and virtual-Ubuntu development runs are complete. Corrected Q4 is selected and frozen; no sealed evaluation has begun.
 
 A proactive product variant now tests a fifth interaction condition: the local model receives a verified checkpoint and event, then proposes one typed conversational or read-only diagnostic move. Its first bundled Mac turn ran successfully, but comparative usefulness and human comprehension remain unmeasured. Details are in [docs/proactive-agent-v2.md](docs/proactive-agent-v2.md).
 
@@ -26,9 +26,9 @@ A proactive product variant now tests a fifth interaction condition: the local m
 - **Advisory model role:** the local model explains known states, classifies known failures, requests missing evidence and communicates stop conditions. It does not create or execute commands.
 - **Independent verification:** schema and transition checks do not depend on the language model that generated the explanation.
 - **Fact-equivalent comparison:** static instructions, ordinary one-shot, bounded one-shot and adaptive bounded variants receive the same underlying facts.
-- **Profiler-first selection:** the base model and quantization remain undecided until the shortlisted public GGUFs are measured under one frozen protocol.
+- **Profiler-first selection:** the selected Q4 artifact survived the frozen development gates and comparative profiler integrations before it was published and wired into the submission.
 
-The candidate rationale and rejection rules are in [docs/model-shortlist.md](docs/model-shortlist.md) and [docs/benchmark-plan.md](docs/benchmark-plan.md). No candidate is described as selected before results exist.
+The candidate rationale and rejection rules are in [docs/model-shortlist.md](docs/model-shortlist.md) and [docs/benchmark-plan.md](docs/benchmark-plan.md). The selected artifact and its public checksum are recorded in [MODEL_ARTIFACT.md](MODEL_ARTIFACT.md).
 
 ## Constraints
 
@@ -78,15 +78,15 @@ An unchanged Q8 replication and a corrected Q4 derivation then took the same dev
 | Peak RSS | 793.16 MB | 756.92 MB |
 | Counted parameters | 596,049,920 | 596,049,920 |
 
-The official-profiler integration pass skipped accuracy, had no temperature sensor and ran on Intel macOS. It is a paired local diagnostic, not the target-profile benchmark. A subsequent eleven-case blind AI-assisted review gave corrected Q4 20/22 factual points, six preference wins and two factual flags; Q8 received 17/22, four wins and five flags, with one tie. Because the reviewer had implementation context and is an AI system, this is comparative technical evidence rather than independent human validation. Corrected Q4 is therefore the provisional Ubuntu candidate, not the final selected model. Full details: [docs/quantization-round-results.md](docs/quantization-round-results.md) and [docs/ai-assisted-blind-review.md](docs/ai-assisted-blind-review.md).
+The official-profiler integration pass skipped accuracy, had no temperature sensor and ran on Intel macOS. It is a paired local diagnostic, not the target-profile benchmark. A subsequent eleven-case blind AI-assisted review gave corrected Q4 20/22 factual points, six preference wins and two factual flags; Q8 received 17/22, four wins and five flags, with one tie. Because the reviewer had implementation context and is an AI system, this is comparative technical evidence rather than independent human validation. At this point in the sequence, corrected Q4 advanced only as the provisional Ubuntu candidate. Full details: [docs/quantization-round-results.md](docs/quantization-round-results.md) and [docs/ai-assisted-blind-review.md](docs/ai-assisted-blind-review.md).
 
-The provisional Q4 artifact was then rerun with networking disabled inside an Ubuntu 22.04 VM constrained to four CPUs and 7.8 GiB visible memory. It passed all eleven development cases with zero repairs and zero contract failures. The official profiler's skip-accuracy integration measured 39.24 generation tokens/s, 2,047.33 ms first-token latency and 744.02 MB peak RSS. This is virtual compatibility evidence, not physical Standard Laptop, accuracy, thermal or power evidence. Full details: [docs/ubuntu-q4-virtual-reproduction.md](docs/ubuntu-q4-virtual-reproduction.md).
+The provisional Q4 artifact was then rerun with networking disabled inside an Ubuntu 22.04 VM constrained to four CPUs and 7.8 GiB visible memory. It passed all eleven development cases with zero repairs and zero contract failures. The official profiler's skip-accuracy integration measured 39.24 generation tokens/s, 2,047.33 ms first-token latency and 744.02 MB peak RSS. This is virtual compatibility evidence, not physical Standard Laptop, accuracy, thermal or power evidence. After that result, the artifact was frozen, published without credential requirements and wired into the hash-verifying download script. Full details: [docs/ubuntu-q4-virtual-reproduction.md](docs/ubuntu-q4-virtual-reproduction.md) and [MODEL_ARTIFACT.md](MODEL_ARTIFACT.md).
 
 The target-profile table remains intentionally incomplete rather than estimated.
 
 | Metric | Result |
 |---|---|
-| Selected model | Corrected Q4 provisional; physical target confirmation pending |
+| Selected model | Qwen3 0.6B corrected Q4_K_M; physical target rejection gate remains |
 | Development machine | Ubuntu 22.04 VM on Intel macOS; 4 vCPU, 7.8 GiB visible RAM |
 | Official profiler version/commit | 0.1.0 / `7adbe08f157e9b96a670426339aca2a519706bdc` |
 | Peak RAM | 744.02 MB virtual Ubuntu profiler integration |

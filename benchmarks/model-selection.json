@@ -1,0 +1,35 @@
+{
+  "decision_version": "1.0",
+  "selected_at": "2026-08-20",
+  "candidate": {
+    "name": "Qwen3 0.6B corrected Q4_K_M",
+    "filename": "Qwen3-0.6B-Q4_K_M-tied.gguf",
+    "bytes": 396704576,
+    "sha256": "297077534a71a538acda7d7a7393081f759774cab48660f6d3e4858bfb58c50e",
+    "parameter_count": 596049920,
+    "license": "Apache-2.0"
+  },
+  "selection_basis": [
+    "Passed all 11 development cases in the local Q4 comparison",
+    "Led Q8 on local artifact size, profiler throughput, first-token latency and peak RSS",
+    "Led the AI-assisted blind prose comparison while retaining explicit factual flags",
+    "Passed all 11 development cases with zero repairs in the offline Ubuntu 22.04 virtual reproduction",
+    "Published through a credential-free URL with matching size and SHA-256"
+  ],
+  "public_artifact": {
+    "release": "https://github.com/osasisorae/vowlock-setup-companion-adtc-2026/releases/tag/qwen3-0.6b-q4-k-m-v1",
+    "download_url": "https://github.com/osasisorae/vowlock-setup-companion-adtc-2026/releases/download/qwen3-0.6b-q4-k-m-v1/Qwen3-0.6B-Q4_K_M-tied.gguf",
+    "credential_required": false,
+    "published_bytes": 396704576,
+    "published_sha256": "297077534a71a538acda7d7a7393081f759774cab48660f6d3e4858bfb58c50e"
+  },
+  "remaining_rejection_gates": [
+    "Physical ADTC-profile Ubuntu run",
+    "Official profiler full accuracy path",
+    "No out-of-memory result or crash",
+    "No challenge thermal or throttling failure"
+  ],
+  "sealed_cases_opened": false,
+  "supersedes_frozen_protocol": false,
+  "note": "This records a later decision without rewriting the pre-registered quantization protocol."
+}
