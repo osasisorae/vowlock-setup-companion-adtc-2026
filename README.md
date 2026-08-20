@@ -49,6 +49,7 @@ The model may explain a known state, classify a known failure, request missing n
 - [Blind AI-assisted Q4/Q8 prose review](docs/ai-assisted-blind-review.md)
 - [Virtual Ubuntu Q4 reproduction](docs/ubuntu-q4-virtual-reproduction.md)
 - [Selected model artifact and public download](MODEL_ARTIFACT.md)
+- [One-time sealed evaluation procedure](docs/sealed-run-procedure.md)
 - [Proactive agent V2 design and first live result](docs/proactive-agent-v2.md)
 - [Machine-readable quantization results](benchmarks/quantization-results.json)
 - [Machine-readable blind review result](benchmarks/ai-assisted-blind-review-results.json)

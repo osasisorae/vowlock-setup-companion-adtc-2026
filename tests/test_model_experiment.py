@@ -6,7 +6,12 @@ from pathlib import Path
 from companion.evaluator import evaluate_scenario
 from companion.experiment import render_static, sanitize_case
 from companion.local_model import GenerationResult
-from companion.model_experiment import _structured_record, assess_structured_attempt, bind_response_schema
+from companion.model_experiment import (
+    _structured_record,
+    assess_structured_attempt,
+    bind_response_schema,
+    run_model_experiment,
+)
 
 
 class ModelExperimentTests(unittest.TestCase):
@@ -142,6 +147,17 @@ class ModelExperimentTests(unittest.TestCase):
         self.assertIn("GENERATION_TIMEOUT", record["hard_failures"])
         self.assertFalse(record["repairable"])
         self.assertEqual(response, record["parsed"])
+
+    def test_generic_runner_refuses_the_wrong_fixture_split_before_generation(self):
+        root = Path(__file__).resolve().parents[1]
+        with self.assertRaisesRegex(ValueError, "sealed runner refuses development"):
+            run_model_experiment(
+                server=None,
+                fixture_target=root / "fixtures/development/02-baseline-missing.json",
+                prompts={},
+                response_schema={},
+                required_split="sealed",
+            )
 
 
 if __name__ == "__main__":

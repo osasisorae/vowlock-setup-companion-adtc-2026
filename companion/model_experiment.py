@@ -166,20 +166,23 @@ def _repair_message(
     )
 
 
-def run_development_experiment(
+def run_model_experiment(
     *,
     server: LlamaServer,
     fixture_target: Path,
     prompts: dict[str, str],
     response_schema: dict[str, Any],
     checkpoint_path: Path | None = None,
+    required_split: str = "development",
 ) -> dict[str, Any]:
     paths = [fixture_target] if fixture_target.is_file() else sorted(fixture_target.rglob("*.json"))
     cases = []
     for path in paths:
         scenario = load_scenario(path)
-        if scenario["split"] != "development":
-            raise ValueError("model development runner refuses non-development fixtures")
+        if scenario["split"] != required_split:
+            raise ValueError(
+                f"model {required_split} runner refuses {scenario['split']} fixtures"
+            )
         decision = evaluate_scenario(copy.deepcopy(scenario))
         sanitized = sanitize_case(scenario, decision)
         user_message = build_user_message(sanitized)
@@ -336,6 +339,7 @@ def run_development_experiment(
 
     return {
         "experiment_contract_version": "1.0",
+        "fixture_split": required_split,
         "model": server.model.name,
         "model_load_seconds": server.load_seconds,
         "summary": {
@@ -361,3 +365,22 @@ def run_development_experiment(
         },
         "cases": cases,
     }
+
+
+def run_development_experiment(
+    *,
+    server: LlamaServer,
+    fixture_target: Path,
+    prompts: dict[str, str],
+    response_schema: dict[str, Any],
+    checkpoint_path: Path | None = None,
+) -> dict[str, Any]:
+    """Preserve the original development-only entry point."""
+    return run_model_experiment(
+        server=server,
+        fixture_target=fixture_target,
+        prompts=prompts,
+        response_schema=response_schema,
+        checkpoint_path=checkpoint_path,
+        required_split="development",
+    )
