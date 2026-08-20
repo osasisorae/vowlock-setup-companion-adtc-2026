@@ -6,7 +6,7 @@
 
 **Model:** Qwen3 0.6B Q4_K_M, corrected tied-embedding artifact
 
-**Report status:** Candidate selected and publicly reproducible; independent human validation and physical target profiling pending
+**Report status:** Candidate selected and publicly reproducible; one-time sealed gate failed 1 of 24 cases; independent human validation and physical target profiling pending
 
 ## Problem
 
@@ -16,7 +16,7 @@ Setup Companion studies whether a small offline model can make one such workflow
 
 The first prototype uses only synthetic fixtures on Ubuntu. This matters for users who have intermittent connectivity, modest consumer hardware, limited access to specialist support or a legitimate need to keep sensitive device state local. Synthetic success will not be presented as proof of physical-device readiness.
 
-The implementation contains eleven invented development scenarios, machine-readable scenario/decision/evidence contracts and a deterministic evaluator with no device-control or command field. Its static renderer passes all eleven development cases with zero hard failures. A 24-case seed-private synthetic holdout has been generated and hash-registered without being evaluated. Four public GGUF candidates were downloaded without credentials and hash-verified. First-round, local Q8-versus-Q4 and virtual-Ubuntu development runs are complete. Corrected Q4 is selected and frozen; no sealed evaluation has begun.
+The implementation contains eleven invented development scenarios, machine-readable scenario/decision/evidence contracts and a deterministic evaluator with no device-control or command field. Its static renderer passes all eleven development cases with zero hard failures. Four public GGUF candidates were downloaded without credentials and hash-verified. First-round, local Q8-versus-Q4 and virtual-Ubuntu development runs are complete. Corrected Q4 was selected and frozen, then evaluated once on the 24-case seed-private synthetic holdout. It passed 23 cases; one response and its permitted repair both ended as incomplete JSON at the token ceiling.
 
 A proactive product variant now tests a fifth interaction condition: the local model receives a verified checkpoint and event, then proposes one typed conversational or read-only diagnostic move. Its first bundled Mac turn ran successfully, but comparative usefulness and human comprehension remain unmeasured. Details are in [docs/proactive-agent-v2.md](docs/proactive-agent-v2.md).
 
@@ -82,6 +82,8 @@ The official-profiler integration pass skipped accuracy, had no temperature sens
 
 The provisional Q4 artifact was then rerun with networking disabled inside an Ubuntu 22.04 VM constrained to four CPUs and 7.8 GiB visible memory. It passed all eleven development cases with zero repairs and zero contract failures. The official profiler's skip-accuracy integration measured 39.24 generation tokens/s, 2,047.33 ms first-token latency and 744.02 MB peak RSS. This is virtual compatibility evidence, not physical Standard Laptop, accuracy, thermal or power evidence. After that result, the artifact was frozen, published without credential requirements and wired into the hash-verifying download script. Full details: [docs/ubuntu-q4-virtual-reproduction.md](docs/ubuntu-q4-virtual-reproduction.md) and [MODEL_ARTIFACT.md](MODEL_ARTIFACT.md).
 
+The selected artifact then ran once on the 24-case sealed synthetic holdout. Twenty-three adaptive outputs passed automatically. In the remaining case, both the first response and its one permitted repair consumed 256 tokens without completing valid JSON. The verifier rejected both. There were no false stops, unnecessary evidence requests, missed required stops or ordinary-response terminal failures, but the pre-registered zero-contract-failure gate still failed. The run will not be repeated or used to revise this protocol. Full details: [docs/sealed-q4-results.md](docs/sealed-q4-results.md).
+
 The target-profile table remains intentionally incomplete rather than estimated.
 
 | Metric | Result |
@@ -94,7 +96,7 @@ The target-profile table remains intentionally incomplete rather than estimated.
 | Generation speed | 39.24 tok/s profiler; 10.61 tok/s custom response harness |
 | Total response latency | 13.17 s mean generation/call in custom harness |
 | Thermal throttling | Sensor unavailable in VM; physical result pending |
-| Safety hard failures | 0 under both adaptive local development runs |
+| Safety hard failures | 0 semantic failures; 1 invalid-JSON contract failure in 24 sealed cases |
 | False-stop rate | 0.0 under both adaptive local development runs |
 | Unnecessary-evidence-request rate | 0.0 under both adaptive local development runs |
 

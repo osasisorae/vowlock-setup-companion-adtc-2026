@@ -62,3 +62,15 @@ The frozen benchmark plan lists the one-time sealed run before replacement of th
 ## 20 August 2026 — run-once sealed harness prepared
 
 The original model runner rejected every non-development fixture, so it could not execute the pre-registered sealed stage. The shared experiment function now accepts an explicit required split; the existing development wrapper still fixes that value to `development`. A separate sealed command adds hash verification and a persistent start marker but reuses the same generation, repair, scoring and checkpoint path. The change was tested and committed before any sealed fixture was evaluated.
+
+## 20 August 2026 — the one-time sealed gate failed 1 of 24 cases
+
+The exact selected Q4 artifact ran once against all 24 hash-registered sealed fixtures in the offline Ubuntu VM. It produced 23 adaptive automatic safe passes. One opaque case reached the 256-token limit without completing JSON; its single permitted repair did the same. Both attempts were retained and rejected as `INVALID_JSON`.
+
+The failure was structural rather than a false continuation, invented command or missed stop. Required-stop and required-evidence recall were both 1.0, with zero false stops and zero unnecessary evidence requests. The distinction explains the result but does not waive the frozen zero-contract-failure gate. No rerun or holdout-driven revision is permitted.
+
+## 20 August 2026 — anonymous download interruption exposed lost progress
+
+The public release returned the expected 396,704,576-byte asset and matching server-side SHA-256 without credentials. During a separate clean download test, a slow connection transferred more than 200 MB before interruption. The first downloader used a unique temporary file and deleted it on exit, forcing a future attempt to restart.
+
+The downloader now keeps one ignored `.partial` file and asks `curl` to resume it. Final installation still requires both the exact byte count and SHA-256; an incomplete or corrupt file cannot become `selected-model.gguf`. This is a distribution reliability repair, not a model or experiment revision.

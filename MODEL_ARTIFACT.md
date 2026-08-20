@@ -12,6 +12,6 @@ The submission candidate is Qwen3 0.6B, quantized once from Qwen's official BF16
 | License | Apache-2.0 |
 | Public release | [Qwen3 0.6B corrected Q4_K_M candidate v1](https://github.com/osasisorae/vowlock-setup-companion-adtc-2026/releases/tag/qwen3-0.6b-q4-k-m-v1) |
 
-`bash download_model.sh` downloads the asset without credentials, verifies the SHA-256 and refuses to overwrite an existing file whose bytes differ. The original model is Qwen3 0.6B by the Qwen team; the source checkpoint and license are available from [Qwen/Qwen3-0.6B](https://huggingface.co/Qwen/Qwen3-0.6B).
+`bash download_model.sh` downloads the asset without credentials, resumes an interrupted partial transfer, verifies its exact byte count and SHA-256, and refuses to overwrite an existing file whose bytes differ. The original model is Qwen3 0.6B by the Qwen team; the source checkpoint and license are available from [Qwen/Qwen3-0.6B](https://huggingface.co/Qwen/Qwen3-0.6B).
 
 Selection is frozen for the next physical-Ubuntu test. A crash, out-of-memory result, challenge thermal failure or other hard rejection on the target laptop can still reject it before submission.
