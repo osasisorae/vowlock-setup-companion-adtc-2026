@@ -6,7 +6,7 @@
 
 **Model:** Qwen3 0.6B Q4_K_M, corrected tied-embedding artifact
 
-**Report status:** Candidate selected and publicly reproducible; one-time sealed gate failed 1 of 24 cases; independent human validation and physical target profiling pending
+**Report status:** Candidate selected and publicly reproducible; one-time sealed gate failed 1 of 24 cases; physical Ubuntu compatibility and accuracy paths completed outside the target CPU range; independent human validation and target profiling pending
 
 ## Problem
 
@@ -84,6 +84,8 @@ The provisional Q4 artifact was then rerun with networking disabled inside an Ub
 
 The selected artifact then ran once on the 24-case sealed synthetic holdout. Twenty-three adaptive outputs passed automatically. In the remaining case, both the first response and its one permitted repair consumed 256 tokens without completing valid JSON. The verifier rejected both. There were no false stops, unnecessary evidence requests, missed required stops or ordinary-response terminal failures, but the pre-registered zero-contract-failure gate still failed. The run will not be repeated or used to revise this protocol. Full details: [docs/sealed-q4-results.md](docs/sealed-q4-results.md).
 
+A fresh clone then ran on a physical Ubuntu 22.04.5 laptop. The public model download completed without credentials and matched the frozen SHA-256. Both the smoke and full reports pass the official profiler schema; the full path measured 23.19 generation tokens/s, 7,298.69 ms first-token latency, 746.43 MB peak RSS and 0.54 normalized accuracy across 50 ARC-Easy samples. The laptop's Intel Core i5-7Y57 is outside the published target CPU range, reached 86°C and reported throttling. These values are physical compatibility evidence, not the challenge target result. The run also exposed a defect in the first preflight script, which checked OS, architecture and memory but failed to enforce CPU generation. That check now rejects non-target processors. Full details: [docs/physical-ubuntu-compatibility.md](docs/physical-ubuntu-compatibility.md).
+
 The target-profile table remains intentionally incomplete rather than estimated.
 
 | Metric | Result |
@@ -101,6 +103,8 @@ The target-profile table remains intentionally incomplete rather than estimated.
 | Unnecessary-evidence-request rate | 0.0 under both adaptive local development runs |
 
 Official and self-reported measurements will be labelled separately. Full method: [docs/benchmark-plan.md](docs/benchmark-plan.md).
+
+The separate non-target physical compatibility run measured 23.19 generation tokens/s, 7,298.69 ms first-token latency, 746.43 MB peak RSS, 86°C peak temperature with throttling and 0.54 normalized accuracy on 50 ARC-Easy samples. It does not fill the target-profile table above.
 
 ## Limitations
 

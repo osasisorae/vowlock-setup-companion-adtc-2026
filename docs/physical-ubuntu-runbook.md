@@ -57,7 +57,7 @@ Before the final report, replace the two remaining `PENDING_*` registration valu
 bash tools/ubuntu/physical-preflight.sh | tee physical-preflight.txt
 ```
 
-Stop if this does not say `Physical Ubuntu preflight passed.` Do not relabel a different OS, architecture or memory profile as the target laptop.
+Stop if this does not say `Physical Ubuntu preflight passed.` The check now enforces the published CPU family as well as OS, architecture and memory. Do not relabel a compatibility run on older hardware as the target laptop.
 
 ## 6. Smoke test, then run full accuracy
 
@@ -84,4 +84,4 @@ Copy these files to the Mac without editing them:
 - `submission-smoke.json`
 - `submission.json`
 
-We will hash the originals, create a reviewed public summary, add screenshot 12, and compare the physical result with the virtual Ubuntu result. A physical success will add performance evidence; it will not erase the recorded 23/24 sealed quality result.
+We will hash the originals, create a reviewed public summary, add screenshot 12, and compare the physical result with the virtual Ubuntu result. A target-profile success will add performance evidence; it will not erase the recorded 23/24 sealed quality result. If the preflight rejects the CPU, any completed run is compatibility evidence only.

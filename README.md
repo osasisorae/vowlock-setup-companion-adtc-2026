@@ -4,11 +4,11 @@ An offline, safety-bounded explanation layer for difficult Android provisioning 
 
 ## Current status
 
-**Phase 2H: the one-time sealed run is complete at 23/24, with one rejected incomplete JSON response; physical target profiling and independent human validation remain. Not submission-ready and not connected to a device.**
+**Phase 2I: the one-time sealed run is complete at 23/24. A fresh physical Ubuntu compatibility run completed the public download, full profiler and 50-sample accuracy path, but its 7th-generation CPU is outside the challenge target and throttled above 85°C. Target profiling and independent human validation remain. Not submission-ready and not connected to a device.**
 
-The repository was created from the [official ADTC 2026 submission template](https://github.com/Africa-Deep-Tech-Foundation/adtc-2026-submission-template). Corrected Qwen3 0.6B Q4_K_M is now the frozen submission candidate. Its [public release](https://github.com/osasisorae/vowlock-setup-companion-adtc-2026/releases/tag/qwen3-0.6b-q4-k-m-v1) requires no credentials, and `download_model.sh` verifies the exact SHA-256 before installation. Team registration details, the physical-laptop benchmark and final submission evidence remain pending.
+The repository was created from the [official ADTC 2026 submission template](https://github.com/Africa-Deep-Tech-Foundation/adtc-2026-submission-template). Corrected Qwen3 0.6B Q4_K_M is now the frozen submission candidate. Its [public release](https://github.com/osasisorae/vowlock-setup-companion-adtc-2026/releases/tag/qwen3-0.6b-q4-k-m-v1) requires no credentials, and a fresh Ubuntu download has confirmed that `download_model.sh` retrieves and verifies the exact SHA-256 before installation. Team registration details, a conforming physical-laptop benchmark and final submission evidence remain pending.
 
-Model weights are downloaded only to the ignored local `model/` directory and hash-verified before use; no weight is committed to Git. Corrected Q4 led the local resource and blind prose comparisons, then passed all eleven development cases with zero repairs inside an offline Ubuntu 22.04 VM. On the single 24-case sealed run, one bounded response and its permitted repair both ended as incomplete JSON at the token ceiling. The verifier rejected them, leaving 23/24 automatic safe passes and a failed zero-contract-failure gate. Physical Standard Laptop profiling, full accuracy and independent human validation remain. No phone, ADB session, APK, security control, VowLock key or commitment activation is used in this phase.
+Model weights are downloaded only to the ignored local `model/` directory and hash-verified before use; no weight is committed to Git. Corrected Q4 led the local resource and blind prose comparisons, then passed all eleven development cases with zero repairs inside an offline Ubuntu 22.04 VM. On the single 24-case sealed run, one bounded response and its permitted repair both ended as incomplete JSON at the token ceiling. The verifier rejected them, leaving 23/24 automatic safe passes and a failed zero-contract-failure gate. Physical Standard Laptop profiling with the full accuracy path, plus independent human validation, remain. No phone, ADB session, APK, security control, VowLock key or commitment activation is used in this phase.
 
 The first product implementation now includes a separately documented [proactive agent variant](docs/proactive-agent-v2.md). It speaks after declared workflow, device and technician events instead of waiting behind an explanation button. Q8 still powers that earlier product experiment, while corrected Q4 is the smaller model selected for this submission after the later comparison.
 
@@ -52,10 +52,12 @@ The model may explain a known state, classify a known failure, request missing n
 - [One-time sealed evaluation procedure](docs/sealed-run-procedure.md)
 - [One-time sealed Q4 result](docs/sealed-q4-results.md)
 - [Physical Ubuntu 22.04 runbook](docs/physical-ubuntu-runbook.md)
+- [Physical Ubuntu compatibility result](docs/physical-ubuntu-compatibility.md)
 - [Proactive agent V2 design and first live result](docs/proactive-agent-v2.md)
 - [Machine-readable quantization results](benchmarks/quantization-results.json)
 - [Machine-readable blind review result](benchmarks/ai-assisted-blind-review-results.json)
 - [Machine-readable virtual Ubuntu result](benchmarks/ubuntu-q4-virtual-results.json)
+- [Machine-readable physical Ubuntu compatibility result](benchmarks/physical-ubuntu-compatibility.json)
 - [Machine-readable model selection decision](benchmarks/model-selection.json)
 - [Machine-readable sealed result](benchmarks/sealed-q4-summary.json)
 - [Machine-readable frozen protocol](experiment-protocol.json)
@@ -105,6 +107,7 @@ Official sources: [challenge](https://adtc-2026.devpost.com/), [rules](https://a
 - [x] Freeze exactly two final test prompts.
 - [x] Implement and test the credential-free, idempotent model download.
 - [ ] Run the official profiler on the target Ubuntu profile.
+- [x] Complete the full official-profiler and accuracy paths on a non-target physical Ubuntu laptop, clearly labelled as compatibility evidence.
 - [x] Run a paired official-profiler integration comparison without claiming target performance.
 - [x] Run the sealed synthetic set once and preserve the failed gate without revision.
 - [ ] Publish measured results without extrapolation or invented values.

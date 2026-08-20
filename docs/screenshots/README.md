@@ -17,7 +17,8 @@ Use synthetic test orders and resettable test phones only. Before committing an 
 9. `09-completion-receipt.png` — the final installation evidence record, using synthetic identifiers.
 10. `10-ubuntu-profiler-result.png` — reviewed summary of the virtual Ubuntu 22.04 development and official-profiler integration results.
 11. `11-sealed-q4-result.png` — the one-time 24-case sealed result, including the failed zero-contract-failure gate.
-12. `12-physical-ubuntu-profiler-result.png` — the final official profiler result from the physical Ubuntu 22.04 laptop, with accuracy and thermals where available.
+12. `12-physical-ubuntu-compatibility-result.png` — the completed profiler run on a non-target physical Ubuntu laptop, including the CPU and thermal limitation.
+13. `13-physical-ubuntu-target-result.png` — the final official profiler result from a conforming physical Ubuntu 22.04 laptop, with accuracy and thermals.
 
 ## Naming and format
 
@@ -29,3 +30,4 @@ Use synthetic test orders and resettable test phones only. Before committing an 
 |---|---|---|---|
 | `10-ubuntu-profiler-result.png` | `9cbd484` + uncommitted Ubuntu evidence pass | Q4 passed 11/11 without repair; virtual profiler limits shown on the image | 20 Aug 2026 |
 | `11-sealed-q4-result.png` | `2da2845` | Q4 passed 23/24; one response and repair both ended as incomplete JSON | 20 Aug 2026 |
+| `12-physical-ubuntu-compatibility-result.png` | `4666b41` + returned physical evidence | Full profiler completed; CPU fell outside target and throttled at 86°C | 20 Aug 2026 |

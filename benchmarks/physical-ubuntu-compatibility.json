@@ -1,0 +1,72 @@
+{
+  "result_version": "1.0",
+  "recorded_at": "2026-08-20",
+  "classification": "physical_ubuntu_compatibility_not_adtc_target",
+  "claim_boundary": "A fresh physical Ubuntu 22.04 run completed the public download, pinned build, smoke profiler and 50-sample ARC-Easy path. The Intel Core i5-7Y57 is outside the ADTC Standard Laptop CPU range, so these measurements are not target-hardware performance evidence.",
+  "source": {
+    "transport": "three unedited email attachments returned by the participant",
+    "originals_retained_locally": true,
+    "files": {
+      "physical-preflight.txt": {
+        "bytes": 463,
+        "sha256": "9ccfe1564eb6998e4aa7775d2791bea0a6f8a7174dbd72a9ab7e28b3534be0c7"
+      },
+      "submission-smoke.json": {
+        "bytes": 2680,
+        "sha256": "b796c5580723fe37621192b5835a7e78fbcdf28e3fa112004569949506c198aa"
+      },
+      "submission.json": {
+        "bytes": 2862,
+        "sha256": "2914792e4877800a34127b708cfa188f4c3afccfbc400f9f6c2c9d42fe3c0560"
+      }
+    }
+  },
+  "validation": {
+    "official_profiler_commit": "7adbe08f157e9b96a670426339aca2a519706bdc",
+    "schema_version": "1.1.0",
+    "smoke_schema_valid": true,
+    "full_schema_valid": true,
+    "model_sha256_verified": true,
+    "model_sha256": "297077534a71a538acda7d7a7393081f759774cab48660f6d3e4858bfb58c50e",
+    "fresh_credential_free_download_completed": true,
+    "pinned_llama_cpp_commit": "9b05354ec6fb58b4e665e9a39ebc40285c015638",
+    "submission_commit": "4666b4109799"
+  },
+  "environment": {
+    "os": "Ubuntu 22.04.5 LTS",
+    "architecture": "x86_64",
+    "cpu": "Intel(R) Core(TM) i5-7Y57 CPU @ 1.20GHz",
+    "logical_cpus": 4,
+    "ram_gb_reported_by_profiler": 7.6,
+    "gpu": "none",
+    "target_cpu_match": false
+  },
+  "smoke": {
+    "generation_tokens_per_second": 26.62,
+    "first_token_latency_ms": 5634.76,
+    "peak_rss_mb": 752.74,
+    "steady_state_rss_mb": 707.49,
+    "peak_temperature_c": 87.0,
+    "throttled": true
+  },
+  "full": {
+    "generation_tokens_per_second": 23.19,
+    "first_token_latency_ms": 7298.69,
+    "peak_rss_mb": 746.43,
+    "steady_state_rss_mb": 699.1,
+    "peak_temperature_c": 86.0,
+    "throttled": true,
+    "accuracy": {
+      "benchmark": "arc_easy",
+      "samples": 50,
+      "metric": "acc_norm",
+      "score": 0.54
+    }
+  },
+  "submission_metadata_ready": false,
+  "remaining_metadata_placeholders": [
+    "submission.team_id",
+    "submission.submitter.email"
+  ],
+  "decision": "Retain as physical compatibility and distribution evidence. Do not submit it as the final target-hardware report. Repeat the profiler on a conforming Standard Laptop after replacing both PENDING metadata values."
+}

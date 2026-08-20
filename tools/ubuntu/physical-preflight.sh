@@ -28,6 +28,17 @@ if [[ -z "$memory_kb" || "$memory_kb" -lt 7500000 ]]; then
   exit 1
 fi
 
+cpu_model="$(awk -F: '/model name/ {sub(/^ /, "", $2); print $2; exit}' /proc/cpuinfo)"
+if [[ "$cpu_model" =~ Intel.*Core.*i5-(10|11|12)[[:alnum:]]+ ]]; then
+  cpu_target="Intel Core i5 10th-12th generation"
+elif [[ "$cpu_model" =~ AMD.*Ryzen[[:space:]]5[[:space:]](3|4|5)[0-9]{3}[[:alnum:]]* ]]; then
+  cpu_target="AMD Ryzen 5 3000-5000 series"
+else
+  echo "CPU is outside the published ADTC Standard Laptop range: ${cpu_model:-unknown}." >&2
+  echo "Expected Intel Core i5 10th-12th generation or AMD Ryzen 5 3000-5000 series." >&2
+  exit 1
+fi
+
 for command_name in git cmake sha256sum llama-bench adtc-profiler; do
   if ! command -v "$command_name" >/dev/null 2>&1; then
     echo "Missing required command: $command_name" >&2
@@ -49,7 +60,8 @@ fi
 echo "Physical Ubuntu preflight passed."
 echo "OS: ${PRETTY_NAME}"
 echo "Architecture: $(uname -m)"
-echo "CPU: $(awk -F: '/model name/ {sub(/^ /, "", $2); print $2; exit}' /proc/cpuinfo)"
+echo "CPU: $cpu_model"
+echo "CPU target match: $cpu_target"
 echo "Logical CPUs: $(getconf _NPROCESSORS_ONLN)"
 echo "Memory: ${memory_kb} kB"
 echo "Kernel: $(uname -r)"

@@ -74,3 +74,9 @@ The failure was structural rather than a false continuation, invented command or
 The public release returned the expected 396,704,576-byte asset and matching server-side SHA-256 without credentials. During a separate clean download test, a slow connection transferred more than 200 MB before interruption. The first downloader used a unique temporary file and deleted it on exit, forcing a future attempt to restart.
 
 The downloader now keeps one ignored `.partial` file and asks `curl` to resume it. Final installation still requires both the exact byte count and SHA-256; an incomplete or corrupt file cannot become `selected-model.gguf`. This is a distribution reliability repair, not a model or experiment revision.
+
+## 20 August 2026 — physical compatibility run exposed a false preflight pass
+
+A fresh physical Ubuntu 22.04.5 clone completed the resumable public model download, pinned Linux runtime build, smoke profiler and full 50-sample ARC-Easy path. The full report measured 23.19 generation tokens/s, 7,298.69 ms first-token latency, 746.43 MB peak RSS and 0.54 normalized accuracy. Both returned reports pass the schema bundled at the pinned official profiler commit.
+
+The laptop uses an Intel Core i5-7Y57, outside the published Intel Core i5 10th–12th generation target. It also reached 86°C and reported throttling. The original preflight nevertheless printed “passed” because it enforced Ubuntu, architecture and memory but only displayed the CPU. The check now rejects CPU strings outside the published Intel and AMD ranges. The originals are preserved; the run is classified as physical compatibility and distribution evidence, not target-hardware performance.
