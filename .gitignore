@@ -12,10 +12,14 @@ model/qwen3-0.6b-hf/
 __pycache__/
 *.pyc
 .venv/
+.adtc-tools/
+.adtc-profiler/
 
 # Local profiler output
 submission.json
+submission-smoke.json
 audit.json
+physical-preflight.txt
 benchmarks/results/
 fixtures/sealed/
 fixtures/.sealed-seed

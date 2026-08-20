@@ -51,6 +51,7 @@ The model may explain a known state, classify a known failure, request missing n
 - [Selected model artifact and public download](MODEL_ARTIFACT.md)
 - [One-time sealed evaluation procedure](docs/sealed-run-procedure.md)
 - [One-time sealed Q4 result](docs/sealed-q4-results.md)
+- [Physical Ubuntu 22.04 runbook](docs/physical-ubuntu-runbook.md)
 - [Proactive agent V2 design and first live result](docs/proactive-agent-v2.md)
 - [Machine-readable quantization results](benchmarks/quantization-results.json)
 - [Machine-readable blind review result](benchmarks/ai-assisted-blind-review-results.json)
